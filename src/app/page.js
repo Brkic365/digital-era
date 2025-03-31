@@ -50,39 +50,101 @@ export default function Home() {
           <ServiceCard 
             icon="handshake"
             title="Legal & Business Structure Guidance"
-            text="Setting up your business legally is crucial, and we’ve partnered with the best legal experts to
-                  make sure everything is in place from the start."
-            href="/services"
+            text="Setting up your business legally is crucial, and we’ve partnered with the best legal experts to make sure everything is in place from the start."
+            points={[
+              {
+                title: "Business Registration & Structure",
+                text: "We’ll guide you in selecting the right legal structure for your business, whether it’s an LLC, corporation, or another model, with the support of our trusted legal partners."
+              },
+              {
+                title: "Licensing & Compliance",
+                text: "Our partners will help you navigate local, state, and federal requirements to ensure that your business remains compliant and operates smoothly."
+              },
+              {
+                title: "Contracts & Agreements",
+                text: "Protect your business with legally sound contracts tailored to your specific needs, crafted by our expert legal network."
+              }
+            ]}
           />
+
           <ServiceCard 
             icon="design"
             title="Website Development & Digital Presence"
-            text="In today’s digital world, your website is your storefront. Digital Era works with the best
-                  developers from around the world to ensure your website is not only beautiful but also optimized
-                  for performance and conversions."
-            href="/services"
+            text="In today’s digital world, your website is your storefront. Digital Era works with the best developers from around the world to ensure your website is not only beautiful but also optimized for performance and conversions."
+            points={[
+              {
+                title: "Custom Website Design & Development",
+                text: "Our world-class development partners create custom, mobile-responsive websites that capture your brand identity and engage visitors."
+              },
+              {
+                title: "E-commerce Solutions",
+                text: "If you’re selling online, we’ll connect you with the best developers to build a seamless e-commerce platform that enhances the customer experience."
+              },
+              {
+                title: "Mobile Optimization",
+                text: "We ensure that your website is optimized for mobile, ensuring a smooth experience for customers on any device."
+              }
+            ]}
           />
+
           <ServiceCard 
             icon="code"
             title="Digital Marketing Strategy & Execution"
-            text="Marketing is essential to driving traffic and growing your business. At Digital Era, we guide you
-                  through the process of building and executing a powerful marketing strategy, with the help of our
-                  global marketing partners."
-            href="/services"
+            text="Marketing is essential to driving traffic and growing your business. At Digital Era, we guide you through the process of building and executing a powerful marketing strategy, with the help of our global marketing partners."
+            points={[
+              {
+                title: "Target Audience Identification",
+                text: "We help you define your target market and create messaging that resonates with your audience."
+              },
+              {
+                title: "SEO & Paid Advertising",
+                text: "Our digital marketing experts work with you to create SEO strategies and paid campaigns that drive organic traffic and generate leads."
+              },
+              {
+                title: "Social Media Marketing",
+                text: "We’ll connect you with top social media experts who will build a strategy to boost your brand’s visibility and engagement on the platforms that matter most."
+              }
+            ]}
           />
+
           <ServiceCard 
             icon="money"
             title="Financial Guidance & Accounting Support"
-            text="A strong financial foundation is key to business growth. With our network of top accounting
-                  professionals, we’ll guide you in managing your business finances effectively."
-            href="/services"
+            text="A strong financial foundation is key to business growth. With our network of top accounting professionals, we’ll guide you in managing your business finances effectively."
+            points={[
+              {
+                title: "Accounting & Tax Planning",
+                text: "Our partners will help you navigate the complex world of business finances and taxes, ensuring that you minimize risks and remain compliant."
+              },
+              {
+                title: "Budgeting & Forecasting",
+                text: "We’ll help you develop realistic financial plans, manage cash flow, and prepare for future growth."
+              },
+              {
+                title: "Business Funding & Investment",
+                text: "If you’re seeking funding, we’ll connect you with financial experts who can help you secure investment and scale your operations."
+              }
+            ]}
           />
+
           <ServiceCard 
             icon="money"
             title="Ongoing Business Growth & Optimization"
-            text="Once your business is up and running, Digital Era continues to support you with ongoing
-                  growth strategies and optimization."
-            href="/services"
+            text="Once your business is up and running, Digital Era continues to support you with ongoing growth strategies and optimization."
+            points={[
+              {
+                title: "Performance Monitoring & Adjustments",
+                text: "We regularly assess your business performance in areas like marketing, website traffic, and financial health, making adjustments as needed to stay on track."
+              },
+              {
+                title: "Strategic Consulting",
+                text: "As your business grows, we offer strategic consulting to help you pivot, scale, or expand your operations efficiently."
+              },
+              {
+                title: "Partnerships & Networking",
+                text: "Through our extensive network of industry leaders and professionals, we’ll help you connect with potential business partners, investors, and collaborators to fuel further growth."
+              }
+            ]}
           />
         </div>
         {/*<p className={styles.helpText}>Want to see how we can help? <Link href="/">Explore All Services</Link></p>*/}

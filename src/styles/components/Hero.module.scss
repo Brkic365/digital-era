@@ -1,7 +1,11 @@
 .hero {
     width: 100%;
-    padding: 10vh 0;
+    padding: 10vh 1rem;
     position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
 
     .globe {
         position: absolute;
@@ -55,6 +59,7 @@
     .graphic {
         z-index: 2;
         position: relative;
+        width: 100%;
     }
 }
   
@@ -81,11 +86,11 @@
     }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1130px) {
     .hero {
-        display: flex;
         align-items: flex-start;
         justify-content: flex-start;
+        flex-direction: row;
         padding: 16vh 5%;
         .text {
             align-items: flex-start;

@@ -12,7 +12,7 @@ function ArrowButton({cta, style = {}}) {
   const router = useRouter();
 
   return (
-    <button onClick={() => router.push(cta.href)} className={styles.arrowBtn} style={style}>
+    <button onClick={() => cta.href ? router.push(cta.href) : null} className={styles.arrowBtn} style={style}>
       <p className={styles.btnText}>{cta.text}</p>
       <HiArrowUpRight />
     </button>
