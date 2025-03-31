@@ -1,0 +1,149 @@
+.carousel {
+  max-width: 100%;
+  margin: auto;
+  --slide-height: auto;
+  --slide-spacing: 1rem;
+  --slide-size: 90%;
+  position: relative;
+}
+
+.viewport {
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+
+.slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+  position: relative;
+  background-color: #e8f0fb;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #334155;
+  transition: all 0.4s ease;
+  opacity: 0.4;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin: 7rem 0;
+}
+
+.active {
+  opacity: 1;
+  z-index: 3;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+}
+
+.reviewText {
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.authorInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 48px;
+  height: 48px;
+}
+
+.authorText {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.about {
+  font-size: 0.9rem;
+  color: #64748b;
+  border-top: 1px solid #cbd5e1;
+  padding-top: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-content: space-between;
+  gap: 1.2rem;
+  position: absolute;
+  bottom: 3rem;
+  left: 60%;
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    align-items: center;
+  
+    button {
+      background-color: white;
+      touch-action: manipulation;
+      display: inline-flex;
+      text-decoration: none;
+      cursor: pointer;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      width: 3.6rem;
+      height: 3.6rem;
+      z-index: 1;
+      border-radius: 50%;
+      color: #516681;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #516681;
+    
+      &:disabled {
+        color: #a1a1aa;
+      }
+    
+      svg {
+        width: 35%;
+        height: 35%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .carousel {
+    --slide-size: 50%;
+
+    .active {
+      transform: scale(1.2) !important;
+    }
+
+    .controls {
+      bottom: 4rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .carousel {
+    --slide-size: 40%;
+  }
+}

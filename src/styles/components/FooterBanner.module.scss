@@ -1,0 +1,73 @@
+.footerBanner {
+    background: rgb(232,241,250);
+    background: linear-gradient(90deg, rgba(232,241,250,1) 0%, rgba(176,196,222,1) 100%);
+    padding: 2rem;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+    max-width: 80rem;
+    margin: 0 auto;
+    margin-bottom: 4rem;
+
+    .rocket {
+        color: #BB9B4E;
+        width: 25rem;
+        height: 25rem;
+
+        position: absolute;
+        z-index: 1;
+
+        right: -5rem;
+        top: -5rem;
+        opacity: 0.2;
+    }
+
+    .left {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+
+        position: relative;
+        z-index: 2;
+        
+        h1 {
+            text-align: center;
+            color: #516681;
+            font-size: 2rem;
+            line-height: 150%;
+            font-weight: 800;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .footerBanner {
+    
+        .rocket {
+            color: #BB9B4E;
+            width: 25rem;
+            height: 25rem;
+    
+            position: absolute;
+            z-index: 1;
+    
+            right: -5rem;
+            top: -5rem;
+            opacity: 0.2;
+        }
+    
+        .left {
+            width: 30rem;
+            margin-right: auto;
+
+            align-items: flex-start;
+
+            h1 {
+                text-align: left;
+                font-size: 2.5rem;
+            }
+        }
+    }
+}

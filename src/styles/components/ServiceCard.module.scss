@@ -1,0 +1,46 @@
+.serviceCard {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    padding: 1rem;
+    background-color: #E8F1FA;
+    border: 1px solid; 
+    border-color: #E8F1FA;
+    border-radius: 0.5rem;
+
+    transition: all 0.2s ease-in-out;
+
+    max-width: 18rem;
+    min-height: 24rem;
+
+    cursor: pointer;
+
+    &:hover {
+        border-color: #516681;
+    }
+
+    .top {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        h4 {
+            width: 70%;
+            font-size: 1rem;
+            color: #333333;
+            line-height: 150%;
+        }
+    }
+
+    p {
+        color: #333333;
+        line-height: 200%;
+        font-size: 0.9rem;
+    }
+
+    .ctaHolder {
+        width: 100%;
+        margin-top: auto;
+    }
+}

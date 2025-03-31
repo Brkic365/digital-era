@@ -1,0 +1,106 @@
+.step {
+    position: relative;
+    margin-right: auto;
+    h1 {
+        font-size: 15rem;
+        font-weight: 800;
+        font-family: 'Poppins';
+
+        position: absolute;
+        z-index: 1;
+        left: -1.5rem;
+        top: -12rem;
+
+        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(176,196,222,1) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    &:nth-child(even) {
+        margin-left: auto;
+        margin-right: 0;
+        h1 {
+            left: auto;
+            right: -1.5rem;
+        }
+    }
+
+    .card {
+        z-index: 2;
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.75rem;
+    
+        padding: 1rem;
+        background-color: #E8F1FA;
+        border-radius: 0.5rem;
+    
+        max-width: 20rem;
+    
+        .top {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            h4 {
+                width: 60%;
+                font-size: 1rem;
+                color: #333333;
+                line-height: 150%;
+            }
+        }
+
+        ul {
+            padding: 0 1rem;
+            li {
+                color: #333333;
+                line-height: 175%;
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 850px) {
+    .step {
+        margin-left: 4rem;
+        margin-top: 2rem;
+        h1 {
+            font-size: 25rem;
+            left: -5rem;
+            top: -18rem;
+        }
+    
+        &:nth-child(even) {
+            margin-left: auto;
+            margin-right: 4rem;
+            h1 {
+                left: auto;
+                right: -5rem;
+            }
+        }
+    
+        .card {
+            gap: 1rem;
+            padding: 1.5rem;
+            max-width: 28rem;
+        
+            .top {
+                h4 {
+                    width: 60%;
+                    font-size: 1.4rem;
+                }
+            }
+    
+            ul {
+                padding: 0 1.5rem;
+                li {
+                    margin-top: 0.5rem;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}

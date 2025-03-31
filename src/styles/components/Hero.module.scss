@@ -1,0 +1,135 @@
+.hero {
+    width: 100%;
+    padding: 10vh 0;
+    position: relative;
+
+    .globe {
+        position: absolute;
+        width: 100%;
+        max-width: 60rem;
+        top: -20rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        opacity: 0.3;
+    }  
+
+    .text {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 1.25rem;
+
+        text-align: center;
+        z-index: 2;
+        position: relative;
+
+        h1 {
+            font-size: 2.2rem;
+            line-height: 150%;
+            color: #333333;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+
+            &:before {
+                width: 80%;
+                height: 1.5rem;
+                content: "";
+                background-color: #E8F1FA;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: -1;
+            }
+        }
+
+        p {
+            font-size: 0.9rem;
+            line-height: 200%;
+            color: #333333;
+        }
+    }
+
+    .graphic {
+        z-index: 2;
+        position: relative;
+    }
+}
+  
+
+@media screen and (min-width: 600px) {
+    .hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .text {
+            width: 90%;
+            h1 {
+                font-size: 3rem;
+    
+                &:before {
+                    width: 60%;
+                }
+            }
+    
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .hero {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 16vh 5%;
+        .text {
+            align-items: flex-start;
+            width: 60%;
+            h1 {
+                text-align: left;
+                font-size: 3rem;
+    
+                &:before {
+                    width: 70%;
+                    left: 0;
+                    transform: translateX(0);
+                }
+            }
+    
+            p {
+                width: 80%;
+                text-align: left;
+                font-size: 1rem;
+            }
+        }
+
+        .graphic {
+            margin-left: auto;
+            width: 50%;
+        }
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .hero {
+        .text {
+            width: 40rem;
+            h1 {
+                font-size: 3.5rem;
+            }
+    
+            p {
+                width: 85%;
+            }
+        }
+
+        .graphic {
+            width: 60%;
+        }
+    }
+}

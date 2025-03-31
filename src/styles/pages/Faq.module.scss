@@ -1,0 +1,118 @@
+.faq {
+    padding: 4rem 1.5rem;
+    max-width: 900px;
+    margin: auto;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+
+    .graphic {
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+        top: 0;
+        left: 0;
+      }
+  
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      z-index: 2;
+      position: relative;
+  
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        position: relative;
+  
+        &::after {
+            content: "";
+            position: absolute;
+            width: 60%;
+            height: 1.5rem;
+            background: #e8f1fa;
+            bottom: -0.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+          }
+      }
+  
+      p {
+        font-size: 0.95rem;
+        margin-top: 0.75rem;
+        color: #555;
+      }
+    }
+  
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 2;
+      position: relative;
+    }
+  
+    .card {
+      background: #f9fafb;
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 2;
+      position: relative;
+  
+      .question {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+  
+        h3 {
+          font-size: 1rem;
+          font-weight: 600;
+          margin: 0;
+        }
+  
+        svg {
+          width: 1.25rem;
+          height: 1.25rem;
+          color: #4b5563;
+          transition: transform 0.2s ease;
+        }
+      }
+  
+      .answer {
+        margin-top: 0.75rem;
+        font-size: 0.95rem;
+        color: #4b5563;
+        line-height: 1.6;
+        z-index: 2;
+        position: relative;
+      }
+  
+      &:hover {
+        background: #f3f4f6;
+      }
+    }
+  
+    .open {
+      background: #eef2f7;
+      border-color: #d1d5db;
+      z-index: 2;
+      position: relative;
+    }
+
+    @media (min-width: 800px) {
+        .header {
+          h1 {
+            font-size: 3rem;
+  
+            &:after {
+              width: 80%;
+              bottom: 0.25rem;
+            }
+          }
+        }
+      }
+  }
+  

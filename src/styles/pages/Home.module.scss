@@ -1,0 +1,90 @@
+.home {
+    padding: 1rem;
+
+    .services {
+        .title {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+
+            margin-bottom: 2rem;
+
+            .categories {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+
+                .category {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    
+                    span {
+                        font-size: 0.95rem;
+                        font-weight: 600;
+                        color: #516681;
+                    }
+                }
+            }
+        }
+
+        .servicesList {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .helpText {
+            margin-top: 1rem;
+            text-align: center;
+            color: #333333;
+            line-height: 200%;
+            font-size: 0.9rem;
+
+            a {
+                cursor: pointer;
+                color: #516681;
+            }
+        }
+    }
+    
+    .steps {
+        padding: 5rem 0;
+
+        .stepsList {
+            width: 90%;
+            max-width: 70rem;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8rem;
+
+            margin-top: 8rem;
+        }
+    }
+
+    .successStories {
+        padding: 5rem 0;
+
+        .projects {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+
+            margin-top: 2rem;
+        }
+    }
+
+    .reviews {
+        padding: 5rem 0;
+    }
+}
