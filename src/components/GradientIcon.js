@@ -1,38 +1,23 @@
-import React from 'react'
-import styles from "../styles/components/GradientIcon.module.scss"
+// components/GradientIcon.js
+import React from 'react';
+import styles from '../styles/components/GradientIcon.module.scss'; // Use this SCSS file
 
-import { PiStrategy } from "react-icons/pi";
-import { HiPencil } from "react-icons/hi";
-import { IoIosRadio } from "react-icons/io";
-import { LuHandshake, LuSpeech } from "react-icons/lu";
-import { MdOutlineDesignServices } from "react-icons/md";
-import { FaCode, FaDollarSign } from "react-icons/fa6";
-import { VscTools } from "react-icons/vsc";
-import { IoRocketOutline } from "react-icons/io5";
-import { HiOutlineCubeTransparent } from "react-icons/hi2";
-import { BsPatchCheck } from "react-icons/bs";
+const GradientIcon = ({ icon: IconComponent, size = '1em', className = '' }) => {
+  const wrapperStyle = {
+    width: size,
+    height: size,
+  };
 
-const icons = {
-  "strategy" : <PiStrategy />,
-  "pen" : <HiPencil />,
-  "radio" : <IoIosRadio />,
-  "handshake" : <LuHandshake />,
-  "design" : <MdOutlineDesignServices />,
-  "code" : <FaCode />,
-  "money" : <FaDollarSign />,
-  "talk" : <LuSpeech />,
-  "tools" : <VscTools />,
-  "rocket" : <IoRocketOutline />,
-  "integrity" : <HiOutlineCubeTransparent />,
-  "check" : <BsPatchCheck />,
-}
-
-function GradientIcon({ icon, size = "2rem" }) {
   return (
-    <div className={styles.gradientIcon} style={{width: size, height: size}}>
-      {icons[icon]}
+    <div
+      className={`${styles.gradientIconWrapper} ${className}`} // Uses the wrapper class
+      style={wrapperStyle}
+      aria-hidden="true"
+    >
+      {/* Icon gets its own class */}
+      <IconComponent className={styles.iconSvg} />
     </div>
-  )
-}
+  );
+};
 
-export default GradientIcon
+export default GradientIcon;

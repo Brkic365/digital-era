@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import styles from "../styles/pages/Home.module.scss";
 import Hero from "../components/Hero";
@@ -5,26 +7,27 @@ import GradientIcon from "../components/GradientIcon";
 import ServiceCard from "../components/ServiceCard";
 import Link from "next/link";
 import TitleTextCta from "../components/TitleTextCta";
-import Step from "../components/Step";
-import ProjectCard from "../components/ProjectCard";
-import ReviewCarousel from "../components/ReviewCarousel";
+import Package from "../components/Package";
+import ProjectCard from "../components/ProjectCard"; // Keep if you plan to use it later
+import ReviewCarouselOrGrid from "../components/ReviewCarousel";
 import FooterBanner from "../components/FooterBanner";
+import { Rocket, TrendingUp, Star, Handshake, Palette, Code, Banknote, LineChart } from 'lucide-react'; // Import Lucide icons
 
 export default function Home() {
   return (
     <main className={styles.home}>
-      <Hero 
-        title="Your Trusted Guide to Business Success"
-        subtitle="At Digital Era, we specialize in providing comprehensive, personalized support to
- entrepreneurs and businesses."
+      <Hero
+        title="Welcome to Digital Era"
+        subtitle="Build Your Online Business. Travel the World. Work from Anywhere. At Digital Era, we help you create the life most people only dream about — by turning your ideas and skills into a powerful, income-generating online business you can run from anywhere in the world."
         cta={{
           text: "Get Started",
           href: "/contact"
         }}
       />
-      <section className={styles.services}>
+
+      <section id="services" className={styles.services}>
         <div className={styles.title}>
-          <TitleTextCta 
+          <TitleTextCta
             title="Our Services: A Full Suite of Business Development Solutions"
             subtitle="Our creative team gets to work to bring your ideas to life as soon as possible with highest quality possible. We always use latest technologies and best practices."
             cta={null}
@@ -33,22 +36,22 @@ export default function Home() {
           />
           <div className={styles.categories}>
             <div className={styles.category}>
-              <GradientIcon icon="strategy" size="1.75rem" />
+              <GradientIcon icon={Handshake} size="1.75rem" /> {/* Updated icon */}
               <span>Strategy & Planning</span>
             </div>
             <div className={styles.category}>
-              <GradientIcon icon="pen" size="1.75rem" />
+              <GradientIcon icon={Palette} size="1.75rem" /> {/* Updated icon */}
               <span>Brand Creation</span>
             </div>
             <div className={styles.category}>
-              <GradientIcon icon="radio" size="1.75rem" />
+              <GradientIcon icon={Code} size="1.75rem" /> {/* Updated icon */}
               <span>Digital Presence</span>
             </div>
           </div>
         </div>
         <div className={styles.servicesList}>
-          <ServiceCard 
-            icon="handshake"
+          <ServiceCard
+            icon={Handshake} // Updated icon
             title="Legal & Business Structure Guidance"
             text="Setting up your business legally is crucial, and we’ve partnered with the best legal experts to make sure everything is in place from the start."
             points={[
@@ -67,8 +70,8 @@ export default function Home() {
             ]}
           />
 
-          <ServiceCard 
-            icon="design"
+          <ServiceCard
+            icon={Palette} // Updated icon
             title="Website Development & Digital Presence"
             text="In today’s digital world, your website is your storefront. Digital Era works with the best developers from around the world to ensure your website is not only beautiful but also optimized for performance and conversions."
             points={[
@@ -87,8 +90,8 @@ export default function Home() {
             ]}
           />
 
-          <ServiceCard 
-            icon="code"
+          <ServiceCard
+            icon={Code} // Updated icon
             title="Digital Marketing Strategy & Execution"
             text="Marketing is essential to driving traffic and growing your business. At Digital Era, we guide you through the process of building and executing a powerful marketing strategy, with the help of our global marketing partners."
             points={[
@@ -107,8 +110,8 @@ export default function Home() {
             ]}
           />
 
-          <ServiceCard 
-            icon="money"
+          <ServiceCard
+            icon={Banknote} // Updated icon
             title="Financial Guidance & Accounting Support"
             text="A strong financial foundation is key to business growth. With our network of top accounting professionals, we’ll guide you in managing your business finances effectively."
             points={[
@@ -127,8 +130,8 @@ export default function Home() {
             ]}
           />
 
-          <ServiceCard 
-            icon="money"
+          <ServiceCard
+            icon={LineChart} // Updated icon
             title="Ongoing Business Growth & Optimization"
             text="Once your business is up and running, Digital Era continues to support you with ongoing growth strategies and optimization."
             points={[
@@ -147,107 +150,127 @@ export default function Home() {
             ]}
           />
         </div>
-        {/*<p className={styles.helpText}>Want to see how we can help? <Link href="/">Explore All Services</Link></p>*/}
+        {/* Optional Link */}
+        {/* <p className={styles.helpText}>Want to see how we can help? <Link href="/services">Explore All Services</Link></p> */}
       </section>
-      <section className={styles.steps}>
-        <TitleTextCta 
-            title="Our Approach: Expert Guidance and World-Class Partnerships"
-            subtitle="At Digital Era, we offer more than just services—we offer a partnership. We believe in
-                      empowering you with the knowledge and resources you need to make informed decisions and
-                      grow your business successfully. Our approach includes:"
-            cta={{
-              text: "Learn More",
-              href: "/contact"
-            }}
-            align="spread"
-            crumbText="How It Works?"
+
+      <section id="pricing" className={styles.pricingSection}> {/* Changed class name */}
+        <TitleTextCta
+            title="Choose Your Subscription Package"
+            subtitle="At Digital Era, we offer more than just services—we offer a partnership. We believe in empowering you with the knowledge and resources you need to make informed decisions and grow your business successfully."
+            cta={null} // Removed CTA, maybe add later?
+            align="center" // Centered align looks better here
+            crumbText="Pricing Plans" // Updated crumb text
           />
-        <section className={styles.stepsList}>
-          <Step 
+        <section className={styles.packageGrid}>
+          <Package
             index={1}
-            icon="talk"
-            title="In-Depth Consultation"
-            points={[
-              "Westart by understanding your business, goals, and challenges.",
-              "Through a detailed consultation, we create a customized roadmap to guide you through the necessary steps"
+            icon={Rocket} // Pass Lucide component
+            title="Beginner Package – Launch Essentials"
+            price={99.99}
+            about="Perfect for first-time digital nomads and new entrepreneurs."
+            listTitle="Includes:"
+            checks={[
+              "1-on-1 consultation call once a month (30 Minutes)",
+              "Business structure + legal overview",
+              "Website & branding support",
+              "Access to curated startup tools & templates",
+              "Developer + accountant + lawyer recommendations based on your location and business"
+            ]}
+            minuses={[
+              "Travel hacking & credit card setup not included",
+              "No direct AI setup or mentorship included"
             ]}
           />
-          <Step 
+          <Package
             index={2}
-            icon="strategy"
-            title="Clear, Actionable Plan"
-            points={[
-              "Once we understand your vision, we’ll lay out a clear plan of action, with specific steps and timelines to ensure that your business is set up for success."
+            icon={TrendingUp} // Pass Lucide component
+            title="Full Package – Build & Grow"
+            price={199.99}
+            about="Built for creators, coaches, freelancers & e-com entrepreneurs ready to scale."
+            listTitle="Includes everything in Beginner, plus:"
+            isFeatured={true} // Mark as featured
+            checks={[
+              "1-on-1 consultation call with CEO & Founder Shubeg Singh once a month (30 Minutes)",
+              "Full credit card strategy setup for free first-class/business travel",
+              "AI employee systems setup — automate your work using tools like ChatGPT & custom workflows",
+              "UAE LLC / international company formation assistance",
+              "Email funnel & lead gen strategy", 
+              "Access to our top-tier developers and marketing partners",
+              "Region-based accountant match for tax optimization",
+              "Smart banking, payment processing, and invoicing solutions",
+              "Payment gateway setup & advisory – We’ll help you choose the best, most reliable payment processors based on your company location and products. Avoid frozen funds and get paid faster with the right strategy."
             ]}
+            // No minuses listed for the full package in the example, add if needed
           />
-          <Step 
+          <Package
             index={3}
-            icon="tools"
-            title="Global Network of Experts"
-            points={[
-              "Our strategic partnerships with world-class developers, digital marketing agencies, legal professionals, and accountants ensure that you receive top-tier expertise in every area of your business.",
-              "You’ll have access to the best in the industry at every stage."
+            icon={Star} // Pass Lucide component
+            title="Premium Package – Scale Like a Pro"
+            price={299.99}
+            about="For advanced entrepreneurs scaling into global brands or digital empires."
+            listTitle="Includes everything in Full, plus:"
+            checks={[
+              "Weekly private consultations with CEO & Founder Shubeg Singh (30 Minutes)",
+              "Deep-dive AI automation & hiring of AI employees (virtual assistants, support agents, etc.)",
+              "Hands-on business concierge service",
+              "Full e-commerce, membership, or course platform builds",
+              "Custom marketing & ad campaign execution",
+              "International tax planning & investment structuring",
+              "Travel hacking support: fly first class for free with the best cards in your country",
+              "Premium access to UAE LLC setup & legal partners"
             ]}
-          />
-          <Step 
-            index={4}
-            icon="rocket"
-            title="Continuous Optimization"
-            points={[
-              "As your business evolves, so do your needs.",
-              "We regularly review your business progress and offer advice, fine-tuning strategies as necessary to ensure ongoing growth and success."
-            ]}
+            // No minuses listed for the premium package in the example, add if needed
           />
         </section>
       </section>
-      {
-        /*
-<section className={styles.successStories}>
-        <TitleTextCta 
+
+      {/* Commented out Success Stories section - uncomment and update if needed
+      <section id="success-stories" className={styles.successStories}>
+        <TitleTextCta
             title="Client Success Stories"
-            subtitle="We’ve helped numerous businesses build a solid foundation, optimize their operations, and
-                      scale successfully. Here’s what some of our clients have to say:"
+            subtitle="We’ve helped numerous businesses build a solid foundation, optimize their operations, and scale successfully. Here’s what some of our clients have to say:"
             cta={{
-              text: "Learn More",
-              href: "/"
+              text: "View Case Studies", // Example CTA text
+              href: "/case-studies" // Example href
             }}
-            align="spread"
-            crumbText="Some of Our Works"
+            align="center" // Center might be better
+            crumbText="Our Work" // Updated crumb text
           />
         <div className={styles.projects}>
-          <ProjectCard 
-            img="/images/projects/1.png"
-            title="Business #1"
-            text="Description of business number 1"
-            href="/"
+          <ProjectCard
+            img="/images/projects/project-1.jpg" // Use descriptive image names
+            title="Client A Transformation"
+            text="Brief description of the results achieved for Client A."
+            href="/case-studies/client-a" // Link to specific case study
           />
-          <ProjectCard 
-            img="/images/projects/1.png"
-            title="Business #2"
-            text="Description of business number 2"
-            href="/"
+          <ProjectCard
+            img="/images/projects/project-2.jpg"
+            title="Client B Growth Story"
+            text="Brief description of the results achieved for Client B."
+            href="/case-studies/client-b"
           />
-          <ProjectCard 
-            img="/images/projects/1.png"
-            title="Business #3"
-            text="Description of business number 3"
-            href="/"
+          <ProjectCard
+            img="/images/projects/project-3.jpg"
+            title="Client C Scalability"
+            text="Brief description of the results achieved for Client C."
+            href="/case-studies/client-c"
           />
         </div>
       </section>
-        */
-      }
-      <section className={styles.reviews}>
-        <TitleTextCta 
-            title="Client Success Stories"
-            subtitle="We’ve helped numerous businesses build a solid foundation, optimize their operations, and
-                      scale successfully. Here’s what some of our clients have to say:"
+      */}
+
+      <section id="reviews" className={styles.reviews}>
+        <TitleTextCta
+            title="What Our Clients Say"
+            subtitle={null}
             cta={null}
             align="center"
             crumbText="Testimonials"
           />
-        <ReviewCarousel />
+        <ReviewCarouselOrGrid />
       </section>
+
       <FooterBanner />
     </main>
   );

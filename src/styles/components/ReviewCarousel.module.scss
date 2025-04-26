@@ -1,60 +1,82 @@
-.carousel {
-  max-width: 100%;
-  margin: auto;
-  --slide-height: auto;
+/* Variables */
+:root {
   --slide-spacing: 1rem;
-  --slide-size: 90%;
+  --slide-size: 90%; // Start mobile-first
+  --slide-height: auto; // Let content define height
+}
+
+.carousel { // General container styles for both modes
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 1rem;
   position: relative;
 }
 
+/* --- CAROUSEL SPECIFIC STYLES --- */
 .viewport {
   overflow: hidden;
+  width: 100%;
 }
 
 .container {
   display: flex;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
   touch-action: pan-y pinch-zoom;
   margin-left: calc(var(--slide-spacing) * -1);
+  backface-visibility: hidden;
 }
 
-.slide {
-  transform: translate3d(0, 0, 0);
-  flex: 0 0 var(--slide-size);
-  min-width: 0;
-  padding-left: var(--slide-spacing);
+.slide { // Base styles for a review card, used by both grid and carousel
+  min-width: 0; // Needed for flex shrinking
   position: relative;
-  background-color: #e8f0fb;
-  border-radius: 1.25rem;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #334155;
-  transition: all 0.4s ease;
-  opacity: 0.4;
-  z-index: 1;
+  background-color: #f8fafc;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  color: #475569;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 250px;
+  transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease, box-shadow 0.3s ease; // Keep transitions smooth
 
-  margin: 7rem 0;
+  // Styles specific to carousel slides (will be overridden for grid items)
+  &:not(.gridItem) {
+    flex: 0 0 var(--slide-size);
+    padding-left: var(--slide-spacing);
+    opacity: 0.5;
+    filter: blur(1px);
+    transform: scale(0.95);
+    z-index: 1;
+  }
 }
 
-.active {
-  opacity: 1;
-  z-index: 3;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+.active { // Style for the active carousel slide
+  &:not(.gridItem) { // Ensure this only applies when NOT a grid item
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .reviewText {
   margin-bottom: 1.5rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: #334155;
+  flex-grow: 1;
 }
 
 .authorInfo {
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-top: auto;
 }
 
 .avatar {
@@ -62,88 +84,165 @@
   object-fit: cover;
   width: 48px;
   height: 48px;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .authorText {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 
 .name {
   font-weight: 600;
   color: #1e293b;
+  font-size: 0.95rem;
+  margin-bottom: 0.1rem;
 }
 
 .about {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #64748b;
-  border-top: 1px solid #cbd5e1;
-  padding-top: 0.25rem;
-  margin-top: 0.25rem;
 }
 
-.controls {
+.controls { // Carousel controls specific styles
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.navButton {
+  // ... (styles remain the same as before) ...
+  background-color: white;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+  &:hover:not(:disabled) {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+    color: #1e293b;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+  svg {
+    width: 50%;
+    height: 50%;
+  }
+}
+
+.dots {
+  // ... (styles remain the same as before) ...
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.dot {
+  // ... (styles remain the same as before) ...
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #cbd5e1;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #94a3b8;
+  }
+}
+
+.dotActive {
+  // ... (styles remain the same as before) ...
+  background-color: #3b82f6;
+  transform: scale(1.2);
+}
+
+
+/* --- GRID SPECIFIC STYLES --- */
+
+// .reviewGridContainer {
+  // Optional: Add specific styles for the container in grid mode if needed
+// }
+
+.reviewGrid {
   display: grid;
-  grid-template-columns: auto 1fr;
-  justify-content: space-between;
-  gap: 1.2rem;
-  position: absolute;
-  bottom: 3rem;
-  left: 60%;
+  gap: 1.5rem; // Spacing between grid items
+  grid-template-columns: 1fr; // Stack on smallest screens
 
-  .buttons {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
-    align-items: center;
-  
-    button {
-      background-color: white;
-      touch-action: manipulation;
-      display: inline-flex;
-      text-decoration: none;
-      cursor: pointer;
-      border: 0;
-      padding: 0;
-      margin: 0;
-      width: 3.6rem;
-      height: 3.6rem;
-      z-index: 1;
-      border-radius: 50%;
-      color: #516681;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #516681;
-    
-      &:disabled {
-        color: #a1a1aa;
-      }
-    
-      svg {
-        width: 35%;
-        height: 35%;
-      }
-    }
+  @media screen and (min-width: 640px) { // e.g., sm breakpoint
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Responsive grid
+  }
+  @media screen and (min-width: 768px) { // e.g., md breakpoint
+      // Keep the auto-fit or define fixed columns if preferred for exactly 2 items
+      // Example for exactly 2 items:
+      // grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media screen and (min-width: 800px) {
-  .carousel {
+// Reset/Override carousel styles for grid items
+.gridItem {
+  // Inherits base .slide styles but overrides carousel specifics
+  opacity: 1 !important; // Ensure full opacity
+  transform: none !important; // Remove scaling
+  filter: none !important; // Remove blur
+  padding-left: 1.5rem !important; // Use standard padding, remove carousel spacing adjustment
+  flex-basis: auto !important; // Let grid control the size
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07); // Slightly different shadow for grid items? Optional.
+
+  &:hover { // Optional: Add hover effect for grid items
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+
+/* --- Media Queries for CAROUSEL layout --- */
+
+@media screen and (min-width: 768px) {
+  // Only apply these if it's NOT a grid
+  .carousel:not(.reviewGridContainer) {
     --slide-size: 50%;
-
-    .active {
-      transform: scale(1.2) !important;
-    }
-
-    .controls {
-      bottom: 4rem;
-    }
+    --slide-spacing: 1.5rem;
+  }
+  .slide:not(.gridItem) { // Target only carousel slides
+    padding: 2.5rem 2rem;
+  }
+  .reviewText:not(.gridItem *) { // Target text within carousel slides
+    font-size: 1.05rem;
   }
 }
 
-@media screen and (min-width: 1100px) {
-  .carousel {
-    --slide-size: 40%;
+@media screen and (min-width: 1024px) {
+  .carousel:not(.reviewGridContainer) {
+    --slide-size: 33.333%;
+     padding: 0 2rem;
+  }
+
+  .controls { // These controls only exist in carousel mode anyway
+    margin-top: 2.5rem;
+  }
+
+  .navButton { // These buttons only exist in carousel mode anyway
+     width: 3.5rem;
+     height: 3.5rem;
   }
 }

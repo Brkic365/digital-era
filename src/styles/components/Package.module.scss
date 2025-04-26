@@ -1,0 +1,219 @@
+// --- Variables ---
+$card-bg: #ffffff; // White background for cards
+$border-color: #e2e8f0;
+$primary-text: #111827; // Darker primary text
+$secondary-text: #4b5563; // Slightly darker secondary
+$muted-text: #6b7280;
+$accent-color: #3b82f6; // Keep consistent blue or change globally
+$check-color: #10b981;
+$minus-color: #ef4444; // Slightly brighter red
+
+// --- Main Package Container ---
+// NOTE: Most positioning/margin is handled by the parent grid (.packageGrid in Home.module.scss)
+.package {
+    position: relative; // Needed for badge and potentially h1 positioning
+    display: flex; // Ensure it takes up grid space correctly
+    flex-direction: column; // Stack h1 and card (if h1 is displayed)
+    height: 100%; // Allow package to fill grid cell height if align-items: stretch
+
+    // --- Background H1 (Styling mostly overridden by parent) ---
+    h1 {
+        font-size: 12rem;
+        font-weight: 800;
+        font-family: 'Poppins', sans-serif;
+        position: absolute;
+        z-index: 1;
+        left: -1rem;
+        top: 0;
+        line-height: 0.8;
+        background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(230, 238, 248, 0.5) 50%, rgba(200, 215, 235, 0.7) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        user-select: none;
+        pointer-events: none;
+        // IMPORTANT: Parent :global(.package) h1 styles will override this in grid context
+    }
+
+    // --- Content Card ---
+    .card {
+        z-index: 2; // Card content above background h1
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1; // Allow card to grow to fill package height
+        gap: 1rem;
+        padding: 1.5rem;
+        background-color: $card-bg;
+        border-radius: 0.75rem;
+        border: 1px solid $border-color;
+        box-shadow: 0 4px 15px rgba(100, 116, 139, 0.07); // Softer default shadow
+        overflow: hidden; // Ensure content stays within rounded corners
+
+        @media screen and (min-width: 850px) {
+             padding: 2rem;
+             gap: 1.25rem;
+        }
+
+        // --- Top Section (Icon + Title) ---
+        .top {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem; // Space below title/icon block
+            h4 {
+                width: 70%;
+                font-size: 1.15rem; // Adjusted size
+                font-weight: 600;
+                color: $primary-text;
+                line-height: 1.4;
+                flex-grow: 1;
+                @media screen and (min-width: 850px) {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+
+        // --- Price Section ---
+        .priceSection {
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            .priceAmount {
+                font-size: 2.25rem; // Slightly larger price
+                font-weight: 700;
+                color: $primary-text;
+                margin-right: 0.25rem;
+                @media screen and (min-width: 850px) {
+                    font-size: 2.75rem;
+                }
+            }
+            .priceFrequency {
+                font-size: 0.9rem;
+                color: $muted-text;
+                font-weight: 500;
+                @media screen and (min-width: 850px) {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        // --- About Text ---
+        .aboutText {
+            font-size: 0.9rem;
+            color: $secondary-text;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            @media screen and (min-width: 850px) {
+                font-size: 0.95rem;
+            }
+        }
+
+        // --- Separator ---
+        .separator {
+            border: none;
+            height: 1px;
+            background-color: $border-color;
+            margin: 0.75rem 0; // Adjusted margin
+        }
+
+        // --- Feature Section (Groups title + list) ---
+        .featureSection {
+             display: flex;
+             flex-direction: column;
+             gap: 0.75rem;
+             // Make feature sections grow if needed, pushing footer elements down
+             &:last-of-type {
+                 margin-bottom: auto; // Push last section down if space available
+                 flex-grow: 1; // Allow last section to grow if needed
+             }
+        }
+
+        // --- List Title ---
+        .listTitle {
+            font-size: 1rem;
+            font-weight: 600;
+            color: $primary-text;
+            margin-bottom: 0; // Use gap in featureSection
+            @media screen and (min-width: 850px) {
+                font-size: 1.05rem;
+            }
+
+            &.minusTitle {
+                 color: $muted-text;
+                 font-weight: 500;
+                 font-size: 0.9rem;
+                  @media screen and (min-width: 850px) {
+                    font-size: 0.95rem;
+                  }
+            }
+        }
+
+        // --- Feature List (UL) ---
+        .featureList {
+            padding: 0;
+            list-style: none;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem; // Slightly larger gap
+
+            li {
+                display: flex;
+                align-items: flex-start;
+                gap: 0.75rem; // Slightly larger gap
+                color: $secondary-text;
+                line-height: 1.5;
+                font-size: 0.9rem;
+                 @media screen and (min-width: 850px) {
+                    font-size: 0.95rem;
+                 }
+
+                .listIcon {
+                    flex-shrink: 0;
+                    margin-top: 0.2em; // Fine-tune alignment
+                    font-size: 1.15em; // Slightly larger icon
+                }
+
+                span {
+                    flex-grow: 1;
+                }
+            }
+        }
+
+        .checkList {
+            .listIcon { color: $check-color; }
+        }
+
+        .minusList {
+            li { color: $muted-text; }
+            .listIcon { color: $minus-color; }
+        }
+    }
+
+    // --- Featured Badge Styling (Defined here for component scope) ---
+    // Style is applied via .package.featured selector in Home.module.scss
+    // But we define the base class here for potential reuse
+    .featuredBadge {
+        // Basic structure, positioning is handled by parent context
+        background-color: $accent-color;
+        color: white;
+        padding: 0.35rem 1rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        white-space: nowrap;
+        // Ensure it's visually distinct even if absolutely positioned
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+}
+
+// --- REMOVED Media Queries for alternating layout ---
+// The @media screen and (min-width: 850px) block that handled
+// margin-left/right: auto and h1 repositioning for nth-child(even)
+// has been removed as it conflicts with the grid layout.
+// Responsive adjustments for card content (padding, font-size)
+// have been integrated into the main .card styles above.
+
+// --- REMOVED @media screen and (min-width: 1200px) ---
+// This was mostly adjusting h1 size which is now context-dependent.
+// Add back specific overrides if needed for very large screens.

@@ -1,19 +1,34 @@
-.gradientIcon {
-    width: 2rem;
-    height: 2rem;
-    background: rgb(176,196,222);
+// styles/components/GradientIcon.module.scss
+
+.gradientIconWrapper {
+    // Apply the requested background gradient and border
     background: linear-gradient(90deg, rgba(176,196,222,1) 0%, rgba(232,241,250,1) 100%);
     border: 1px solid #B0C4DE;
-    border-radius: 50%;
+    border-radius: 50%; // Make it a circle
+  
+    // Positioning context for the absolute icon
     position: relative;
-
-    svg {
-        width: 40%;
-        height: 40%;
-        color: #516681;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-}
+  
+    // Ensure it behaves correctly inline
+    display: inline-block; // Or inline-flex
+    vertical-align: middle;
+  
+    // Width and height are set via inline styles from the 'size' prop in the component
+    // No need to set fixed width/height here
+  }
+  
+  .iconSvg {
+    // Apply the requested icon styling
+    width: 40%;
+    height: 40%;
+    color: #516681; // Set the icon color (stroke for Lucide)
+  
+    // Absolute positioning to center within the wrapper
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); // Precise centering trick
+  
+    // Ensure SVG scaling behaves as expected
+    display: block;
+  }
