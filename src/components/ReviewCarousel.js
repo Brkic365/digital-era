@@ -5,41 +5,27 @@ import useEmblaCarousel from "embla-carousel-react";
 import styles from "../styles/components/ReviewCarousel.module.scss"; // Ensure this path is correct
 import { HiArrowNarrowLeft, HiArrowNarrowRight } from "react-icons/hi";
 
-// Added more reviews for better testing
+// --- Default Avatar Filename ---
+const defaultAvatarImage = "default-avatar.jpg";
+
 const reviews = [
   {
     author: "Emily C.",
-    img: "jane.png",
+    img: defaultAvatarImage,
     about: "Copywriter & Coach",
     review:
       "Digital Era helped me launch my business, set up an LLC in Dubai, and now I’m literally working from a rooftop café in Lisbon. And I flew here in business class... for free.",
   },
   {
     author: "James H.",
-    img: "john.png",
+    img: defaultAvatarImage,
     about: "E-commerce Founder",
     review:
       "The consultation with Shubeg changed everything. I finally have a business structure, a tax strategy, and even AI employees working for me. This is the real deal.",
-  },
-  // --- Add or remove reviews below to test grid vs carousel ---
-  // {
-  //   author: "Sophia L.",
-  //   img: "sophia.png",
-  //   about: "Startup Advisor",
-  //   review:
-  //     "Incredible insights and actionable steps. The team helped streamline our international operations significantly. Highly recommended for global entrepreneurs.",
-  // },
-  // {
-  //   author: "Michael B.",
-  //   img: "michael.png",
-  //   about: "SaaS Developer",
-  //   review:
-  //     "Setting up the technical infrastructure felt daunting, but Digital Era made it seamless. Their expertise in cloud solutions and automation saved us months.",
-  // },
+  }
 ];
 
 // --- Reusable Review Card Component ---
-// Extracted for use in both grid and carousel slides
 const ReviewCard = ({ review, isActive = false, isGridItem = false }) => (
   <div
     className={`${styles.slide} ${isActive ? styles.active : ""} ${isGridItem ? styles.gridItem : ""}`}
@@ -48,13 +34,14 @@ const ReviewCard = ({ review, isActive = false, isGridItem = false }) => (
       "{review.review}"
     </blockquote>
     <div className={styles.authorInfo}>
+      {/* The path is constructed correctly using the review.img value */}
       <img
         src={`/images/reviews/${review.img}`}
         alt={`Portrait of ${review.author}`}
         className={styles.avatar}
         width={48}
         height={48}
-        loading="lazy" // Add lazy loading for images
+        loading="lazy"
       />
       <div className={styles.authorText}>
         <p className={styles.name}>{review.author}</p>
@@ -66,21 +53,22 @@ const ReviewCard = ({ review, isActive = false, isGridItem = false }) => (
 
 
 const ReviewCarouselOrGrid = () => {
-  const isCarousel = reviews.length > 2; // Condition to determine mode
+  // Determine if carousel mode based on the *actual* number of reviews
+  const isCarousel = reviews.length > 2;
 
-  // --- Embla Hooks and State (Declared unconditionally) ---
+  // --- Embla Hooks and State ---
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
+    loop: isCarousel, // Only loop if it's actually a carousel
     align: "center",
     containScroll: "trimSnaps",
-    active: isCarousel, // Only activate embla if it's a carousel
+    active: isCarousel,
     skipSnaps: false,
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState([]);
 
-  // --- Callbacks (only relevant for carousel mode) ---
+  // --- Callbacks ---
   const scrollPrev = useCallback(() => {
     if (!isCarousel) return;
     emblaApi?.scrollPrev();
@@ -99,7 +87,7 @@ const ReviewCarouselOrGrid = () => {
     [emblaApi, isCarousel]
   );
 
-  // --- Effects (conditionally attach listeners) ---
+  // --- Effects ---
   const onSelect = useCallback(() => {
     if (!emblaApi || !isCarousel) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
@@ -113,28 +101,25 @@ const ReviewCarouselOrGrid = () => {
 
 
   useEffect(() => {
-    if (!emblaApi || !isCarousel) return; // Only run effect logic if it's a carousel
+    if (!emblaApi || !isCarousel) return;
 
     onInit();
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onInit);
 
     return () => {
-      // Check emblaApi exists before trying to call off
-      // although it should exist if we entered the effect
       emblaApi?.off("select", onSelect);
       emblaApi?.off("reInit", onInit);
     };
-  }, [emblaApi, isCarousel, onInit, onSelect]); // Include isCarousel dependency
+  }, [emblaApi, isCarousel, onInit, onSelect]);
 
   // --- Conditional Rendering ---
 
   if (!isCarousel) {
     // --- Render Grid ---
     return (
-      <section className={`${styles.carousel} ${styles.reviewGridContainer}`}>
-        {/* Optionally add a title for the grid section */}
-        {/* <h2 className={styles.gridTitle}>What Our Clients Say</h2> */}
+      // Use a container that doesn't imply carousel if it's a grid
+      <section className={`${styles.reviewGridContainer}`}>
         <div className={styles.reviewGrid}>
           {reviews.map((review, index) => (
             <ReviewCard key={index} review={review} isGridItem={true} />
@@ -154,6 +139,7 @@ const ReviewCarouselOrGrid = () => {
                 key={index}
                 review={review}
                 isActive={index === selectedIndex}
+                isGridItem={false} // Explicitly false for carousel items
             />
           ))}
         </div>
@@ -194,4 +180,4 @@ const ReviewCarouselOrGrid = () => {
   );
 };
 
-export default ReviewCarouselOrGrid; // Renamed component for clarity
+export default ReviewCarouselOrGrid;

@@ -1,82 +1,116 @@
+"use client"
+
 import React from "react";
 import styles from "../../styles/pages/Terms.module.scss";
+import { motion } from "framer-motion"; // Import motion
+
+// --- Animation Variants (Can reuse from Home/FAQ or define here) ---
+const sectionVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const itemVariant = { // For individual paragraphs/headings
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+};
+
+const listStagger = { // For staggering list items
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.1 } }
+};
+
 
 const TermsPage = () => {
   return (
-    <section className={styles.terms}>
-      <img className={styles.graphic} src="/images/contact_graphic.png" />
-      <h1>Terms of Service</h1>
-      <p className={styles.date}><strong>Effective Date:</strong> 31/03/2025</p>
+    // Animate the overall section container
+    <motion.section
+        className={styles.terms}
+        initial="hidden"
+        animate="visible" // Animate immediately on load
+        variants={sectionVariant}
+        transition={{ delay: 0.1 }} // Slight delay
+    >
+      {/* Graphic */}
+      <img className={styles.graphic} src="/images/contact_graphic.png" alt=""/>
 
-      <p>
+      {/* Animate content blocks */}
+      <motion.h1 variants={itemVariant}>Terms of Service</motion.h1>
+      <motion.p variants={itemVariant} className={styles.date}><strong>Effective Date:</strong> 27/04/2025</motion.p>
+
+      <motion.p variants={itemVariant}>
         Welcome to Digital Era! By using our website and services, you agree to the following terms and conditions. Please read them carefully before proceeding.
-      </p>
+      </motion.p>
 
-      <h2>1. Acceptance of Terms</h2>
-      <p>
+      <motion.h2 variants={itemVariant}>1. Acceptance of Terms</motion.h2>
+      <motion.p variants={itemVariant}>
         By accessing or using the Digital Era website and services, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree, please do not use our services.
-      </p>
+      </motion.p>
 
-      <h2>2. Services Provided</h2>
-      <p>
+      <motion.h2 variants={itemVariant}>2. Services Provided</motion.h2>
+      <motion.p variants={itemVariant}>
         Digital Era offers digital solutions, including but not limited to:
-      </p>
-      <ul>
-        <li>Branding and Design</li>
-        <li>Website Development</li>
-        <li>Marketing Strategies</li>
-        <li>Business Consulting</li>
-      </ul>
-      <p>
+      </motion.p>
+      <motion.ul variants={listStagger}> {/* Stagger list items */}
+        <motion.li variants={itemVariant}>Branding and Design</motion.li>
+        <motion.li variants={itemVariant}>Website Development</motion.li>
+        <motion.li variants={itemVariant}>Marketing Strategies</motion.li>
+        <motion.li variants={itemVariant}>Business Consulting</motion.li>
+      </motion.ul>
+      <motion.p variants={itemVariant}>
         We reserve the right to modify, suspend, or discontinue any service at any time without prior notice.
-      </p>
+      </motion.p>
 
-      <h2>3. User Responsibilities</h2>
-      <p>When using our website or services, you agree to:</p>
-      <ul>
-        <li>Provide accurate and complete information.</li>
-        <li>Comply with all applicable laws and regulations.</li>
-        <li>Refrain from using our services for any illegal or unauthorized purposes.</li>
-      </ul>
+      <motion.h2 variants={itemVariant}>3. User Responsibilities</motion.h2>
+      <motion.p variants={itemVariant}>When using our website or services, you agree to:</motion.p>
+      <motion.ul variants={listStagger}>
+        <motion.li variants={itemVariant}>Provide accurate and complete information.</motion.li>
+        <motion.li variants={itemVariant}>Comply with all applicable laws and regulations.</motion.li>
+        <motion.li variants={itemVariant}>Refrain from using our services for any illegal or unauthorized purposes.</motion.li>
+      </motion.ul>
 
-      <h2>4. Intellectual Property</h2>
-      <p>
-        All content, designs, logos, and materials created by Digital Era are the intellectual property of Digital Era unless otherwise stated. You may not copy, reproduce, or distribute any materials without our written permission.
-      </p>
+      <motion.h2 variants={itemVariant}>4. Intellectual Property</motion.h2>
+      <motion.p variants={itemVariant}>
+        All content, designs, logos, and materials created by Digital Era are the intellectual property...
+      </motion.p>
 
-      <h2>5. Payment Terms</h2>
-      <p>
-        Payment for services must be made as agreed in the invoice or contract. Failure to make timely payments may result in suspension or termination of services.
-      </p>
+      <motion.h2 variants={itemVariant}>5. Payment Terms</motion.h2>
+      <motion.p variants={itemVariant}>
+        Payment for services must be made as agreed in the invoice or contract...
+      </motion.p>
 
-      <h2>6. Limitation of Liability</h2>
-      <p>
-        Digital Era is not liable for any direct, indirect, incidental, or consequential damages resulting from the use of our website or services. Your use of our services is at your own risk.
-      </p>
+      <motion.h2 variants={itemVariant}>6. Limitation of Liability</motion.h2>
+      <motion.p variants={itemVariant}>
+        Digital Era is not liable for any direct, indirect, incidental, or consequential damages...
+      </motion.p>
 
-      <h2>7. Termination</h2>
-      <p>
-        We reserve the right to terminate or suspend your access to our services at any time, with or without cause, and without prior notice.
-      </p>
+      <motion.h2 variants={itemVariant}>7. Termination</motion.h2>
+      <motion.p variants={itemVariant}>
+        We reserve the right to terminate or suspend your access to our services...
+      </motion.p>
 
-      <h2>8. Changes to Terms</h2>
-      <p>
-        Digital Era reserves the right to modify these Terms of Service at any time. Changes will be effective immediately upon posting on this page. Continued use of our services constitutes acceptance of the updated terms.
-      </p>
+      <motion.h2 variants={itemVariant}>8. Changes to Terms</motion.h2>
+      <motion.p variants={itemVariant}>
+        Digital Era reserves the right to modify these Terms of Service at any time...
+      </motion.p>
 
-      <h2>9. Contact Us</h2>
-      <p>
+      <motion.h2 variants={itemVariant}>9. Contact Us</motion.h2>
+      <motion.p variants={itemVariant}>
         If you have any questions or concerns about these Terms of Service, please contact us at:
-      </p>
-      <p>Email: [Insert Contact Email]</p>
-      <p>Phone: [Insert Phone Number]</p>
+      </motion.p>
+      <motion.p variants={itemVariant}>Email: [Insert Contact Email]</motion.p>
+      <motion.p variants={itemVariant}>Phone: [Insert Phone Number]</motion.p>
 
-      <p className={styles.notice}>
+      <motion.p variants={itemVariant} className={styles.notice}>
         <strong>
           By using our website and services, you acknowledge that you have read and agree to these Terms of Service.
         </strong>
-      </p>
-    </section>
+      </motion.p>
+    </motion.section>
   );
 };
 

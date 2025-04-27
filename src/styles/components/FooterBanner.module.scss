@@ -1,73 +1,152 @@
+// src/styles/components/FooterBanner.module.scss
+
+// Variables (consider moving to a global file)
+$primary-cta-bg: #BB9B4E; // Gold color from previous example
+$primary-cta-text: white;
+$banner-bg-start: #e8f1fa; // Light blue start
+$banner-bg-end: #b0c4de; // Darker blue end
+$text-primary: #1f2937; // Dark gray/blue
+$text-secondary: #4b5563; // Medium gray
+$link-color: #3b82f6; // Standard link blue
+
 .footerBanner {
-    background: rgb(232,241,250);
-    background: linear-gradient(90deg, rgba(232,241,250,1) 0%, rgba(176,196,222,1) 100%);
-    padding: 2rem;
+    // Use a slightly different gradient or solid color if desired
+    background: linear-gradient(110deg, $banner-bg-start 0%, $banner-bg-end 100%);
+    padding: 3rem 1.5rem; // Increased padding
     border-radius: 1rem;
     position: relative;
     overflow: hidden;
-    max-width: 80rem;
-    margin: 0 auto;
-    margin-bottom: 4rem;
+    max-width: 75rem; // Adjusted max-width
+    margin: 0 auto 5rem auto; // Centered with bottom margin
+    box-shadow: 0 8px 25px rgba(176, 196, 222, 0.3); // Subtle shadow
 
-    .rocket {
-        color: #BB9B4E;
+    @media screen and (min-width: 768px) {
+        padding: 4rem 2.5rem;
+    }
+}
+
+// Optional background icon (replace rocket or remove)
+.backgroundIcon {
+    color: darken($banner-bg-end, 10%); // Slightly darker than background
+    width: 18rem;
+    height: 18rem;
+    position: absolute;
+    z-index: 1;
+    right: -3rem;
+    bottom: -4rem;
+    opacity: 0.15;
+    pointer-events: none;
+
+     @media screen and (min-width: 768px) {
         width: 25rem;
         height: 25rem;
+        right: -4rem;
+        bottom: -5rem;
+     }
+}
 
-        position: absolute;
-        z-index: 1;
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Center content horizontally
+    text-align: center;
+    gap: 1.5rem; // Spacing between elements
+    position: relative;
+    z-index: 2; // Ensure content is above background icon
 
-        right: -5rem;
-        top: -5rem;
-        opacity: 0.2;
+    @media screen and (min-width: 768px) {
+        gap: 1.8rem;
     }
 
-    .left {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 1rem;
-        width: 100%;
+    // --- FIX APPLIED HERE ---
+    // Select h2 only when it's inside .content
+    h2 {
+        color: $text-primary;
+        font-size: clamp(1.6rem, 5vw, 2.2rem); // Responsive font size
+        line-height: 1.3;
+        font-weight: 700;
+    }
+    // --- END FIX ---
+}
 
-        position: relative;
-        z-index: 2;
-        
-        h1 {
-            text-align: center;
-            color: #516681;
-            font-size: 2rem;
-            line-height: 150%;
-            font-weight: 800;
+.headingIcon {
+    display: inline-block; // Keep icon inline with text
+    vertical-align: middle; // Align icon nicely
+    margin-right: 0.75rem;
+    width: 1.8rem; // Adjust size as needed
+    height: 1.8rem;
+    color: $text-primary; // Match heading color
+    margin-bottom: 0.2rem; // Slight adjustment for alignment
+
+     @media screen and (min-width: 768px) {
+        width: 2.2rem;
+        height: 2.2rem;
+     }
+}
+
+.tagline {
+    color: $text-secondary;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    line-height: 1.6;
+    max-width: 60ch; // Limit line length for readability
+}
+
+.consultationOffer {
+    margin-top: 0.5rem; // Add some space above
+    p {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: $text-primary;
+        background-color: rgba(white, 0.5); // Subtle highlight background
+        padding: 0.5rem 1rem;
+        border-radius: 999px;
+        display: inline-block;
+
+        @media screen and (min-width: 768px) {
+            font-size: 1.2rem;
         }
     }
 }
 
-@media screen and (min-width: 1200px) {
-    .footerBanner {
-    
-        .rocket {
-            color: #BB9B4E;
-            width: 25rem;
-            height: 25rem;
-    
-            position: absolute;
-            z-index: 1;
-    
-            right: -5rem;
-            top: -5rem;
-            opacity: 0.2;
-        }
-    
-        .left {
-            width: 30rem;
-            margin-right: auto;
+.actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; // Space between actions
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 500px; // Limit width of actions area
+}
 
-            align-items: flex-start;
+.actionItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: $text-secondary;
+    line-height: 1.5;
 
-            h1 {
-                text-align: left;
-                font-size: 2.5rem;
-            }
+    svg {
+        flex-shrink: 0;
+        color: $text-primary; // Make icons slightly darker
+    }
+
+    a {
+        color: $link-color;
+        font-weight: 500;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
         }
     }
+}
+
+// Style for the dedicated ArrowButton (if used)
+// Accessing ArrowButton's class might need :global if ArrowButton uses CSS Modules
+// Assuming ArrowButton component root has .arrowBtn class
+:global(.arrowBtn) {
+    // Overrides specifically for this context if needed
+    // Example: Make it wider
+    // padding-left: 2rem;
+    // padding-right: 2rem;
 }

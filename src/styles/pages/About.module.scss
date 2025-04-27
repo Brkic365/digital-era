@@ -1,206 +1,425 @@
-.about {
-    .mission {
-        padding: 1rem;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-        gap: 1rem;
-        margin: 5rem auto;
-        position: relative;
+// src/styles/pages/About.module.scss
 
-        h1 {
-            width: 100%;
-            text-align: center;
-            font-size: 20vw;
-            font-weight: 800;
-            font-family: 'Poppins';
-    
-            position: absolute;
-            z-index: 1;
-            left: 50%;
-            transform: translateX(-50%);
-            top: -4rem;
-    
-            background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 20%, #E8F1FA 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+// Variables
+$primary-text: #111827;
+$secondary-text: #4b5563;
+$light-bg: #f7fafc;
+$dark-bg: #1f2937;
+$dark-bg-card: #374151;
+$light-text: #f9fafb;
+$accent-color: #3b82f6;
+$primary-cta-bg: #BB9B4E; // Example Gold
+$border-color: #e5e7eb;
+$dark-border-color: #4b5563;
+$check-color: #10b981; // Color for checkmarks
+
+
+.about {
+    padding-top: 0; // Remove top padding if hero handles it
+
+    // --- ABOUT HERO STYLES ---
+    .aboutHero {
+        background-color: $light-bg; // Example background
+        padding: 6rem 1.5rem 4rem 1.5rem; // Adjust padding
+        text-align: center;
+
+        @media screen and (min-width: 768px) {
+             padding: 8rem 2rem 6rem 2rem;
         }
 
-        h2 {
-            max-width: 40rem;
-            font-size: 1.8rem;
-            line-height: 125%;
-            color: #333333;
+        .heroContent {
+            max-width: 70ch; // Limit text width
+            margin: 0 auto;
+        }
+
+        .heroCrumb {
+            display: inline-block;
+            background-color: rgba($accent-color, 0.1);
+            color: $accent-color;
+            padding: 0.3rem 0.8rem;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 6vw, 3.2rem);
             font-weight: 700;
-            position: relative;
-            z-index: 2;
+            color: $primary-text;
+            line-height: 1.3;
+            margin-bottom: 1rem;
         }
 
         p {
-            max-width: 40rem;
-            text-align: center;
-            font-size: 0.9rem;
-            line-height: 200%;
-            color: #333333;
-            z-index: 2;
-            position: relative;
+            font-size: 1.1rem;
+            color: $secondary-text;
+            line-height: 1.7;
+            @media screen and (min-width: 768px) {
+                 font-size: 1.2rem;
+            }
         }
     }
 
-    .story {
-        padding: 1rem;
-        margin: 5rem auto;
+    // --- FOUNDER SECTION ---
+    .founderSection {
+        padding: 6rem 1rem; // Consistent padding
+        background-color: #ffffff; // White background
+        margin: 0 auto;
 
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 5rem;
+        .founderContent {
+            max-width: 80rem;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 3rem;
 
-        position: relative;
-        
-        .aboutImg {
-            width: 100%;
-            max-width: 30rem;
-            z-index: 2;
-            position: relative;
+            @media screen and (min-width: 992px) {
+                flex-direction: row;
+                gap: 5rem;
+                align-items: flex-start;
+            }
         }
 
-        .globe {
-            position: absolute;
+        .founderText {
+            flex: 1 1 60%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem; // Slightly increased paragraph gap
+
+            h2 {
+                font-size: clamp(1.5rem, 4vw, 2rem); // Slightly smaller H2
+                font-weight: 700;
+                color: $primary-text;
+                margin-bottom: 0.5rem;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            p {
+                font-size: 1rem;
+                line-height: 1.8;
+                color: $secondary-text;
+                strong { color: $primary-text; font-weight: 600;}
+            }
+        }
+
+        .founderImageWrapper {
+            flex: 1 1 35%;
+            max-width: 380px; // Slightly smaller max-width
+            width: 70%; // Smaller width on mobile
+
+            @media screen and (min-width: 992px) {
+                 width: 100%;
+                 max-width: 420px; // Adjusted desktop max-width
+            }
+        }
+
+        .founderImage {
+            display: block;
             width: 100%;
-            max-width: 40rem;
-            right: 0;
-            bottom: -8rem;
-            z-index: 1;
-        }   
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08); // Softer shadow
+            object-fit: cover;
+        }
     }
 
-    .team {
-        padding: 4rem 2rem;
-        margin: 10rem auto 5rem auto;
-        background-color: #101010;
+    // --- TEAM / NETWORK SECTION ---
+    .teamNetworkSection {
+        padding: 6rem 1rem; // Consistent padding
+        margin: 0 auto;
+        background-color: $dark-bg;
+        color: $light-text;
         z-index: 2;
         position: relative;
 
-        .teamMembers {
+        .teamHeader {
+            max-width: 70ch;
+            margin: 0 auto 3rem auto;
+            text-align: center;
+
+            h2 {
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
+                font-weight: 700;
+                color: $light-text;
+                margin-bottom: 0.5rem;
+                display: inline-flex; // Keep inline for emoji alignment
+                align-items: center;
+                gap: 0.75rem;
+            }
+            .teamSubtitle {
+                font-size: 1.1rem;
+                font-weight: 500;
+                color: darken($light-text, 15%);
+            }
+        }
+
+        .teamIntroText {
+            max-width: 70ch;
+            margin: 0 auto 4rem auto; // Increased bottom margin
+            text-align: center;
             display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 1rem;
+            color: darken($light-text, 10%);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .expertsGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            max-width: 80rem;
+            margin: 0 auto;
 
-            .member {
-                max-width: 20rem;
-                width: 100%;
+             @media screen and (min-width: 1024px) {
+                 gap: 2.5rem;
+             }
+        }
 
+        .expertCard {
+            background-color: $dark-bg-card;
+            border: 1px solid $dark-border-color;
+            border-radius: 0.75rem;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.8rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            }
+
+            .expertIconWrapper {
+                background-color: rgba($light-text, 0.08);
+                color: $light-text; // Icon color itself
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
                 display: flex;
                 align-items: center;
-                flex-direction: column;
-                gap: 0.1rem;
+                justify-content: center;
+                margin-bottom: 0.5rem;
+            }
 
-                img {
-                    width: 100%;
-                    margin-bottom: 0.5rem;
-                }
+            h4 {
+                font-size: 1.15rem; // Adjusted size
+                font-weight: 600;
+                color: $light-text;
+                display: flex; // For emoji alignment
+                align-items: center;
+                gap: 0.5rem;
+            }
 
-                h4 {
-                    font-size: 1.25rem;
-                    color: white;
-                    font-weight: 600;
-                }
-        
-                span {
-                    text-align: center;
-                    font-size: 0.9rem;
-                    color: #BB9B4E;
-                }
+            .cardEmoji {
+                font-size: 1.1em; // Make emoji slightly larger than text
+            }
+
+            p {
+                font-size: 0.95rem;
+                color: darken($light-text, 20%);
+                line-height: 1.7;
+                flex-grow: 1; // Allows card heights to stretch if needed
+
+                strong { color: lighten($primary-cta-bg, 10%); font-weight: 600;}
             }
         }
+
+         // Summary Card (Optional distinct style)
+         .summaryCard {
+             background-color: lighten($dark-bg-card, 8%);
+             border-color: lighten($dark-border-color, 10%);
+             h4 { color: lighten($light-text, 5%); }
+             p { color: darken($light-text, 10%); }
+         }
     }
 
-    .coreValues {
-        padding: 1rem;
-        margin: 0 auto 7rem auto;
+    // --- PAYMENT GATEWAY SECTION ---
+    .paymentGatewaySection {
+        padding: 6rem 1rem;
+        background-color: $light-bg; // Or #ffffff if preferred
+        margin: 0 auto;
+        margin-bottom: 5rem;
 
-        .values {
-            margin-top: 5rem;
+        .pgContent {
+            max-width: 70rem; // Consistent max-width
+            margin: 0 auto;
             display: flex;
-            align-items: flex-start;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+
+             @media screen and (min-width: 768px) {
+                 gap: 2rem;
+             }
+        }
+
+        .pgIconLargeWrapper {
+            background-color: rgba($accent-color, 0.1); // Use accent color theme
+            color: $accent-color;
+            width: 80px; // Larger icon wrapper
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 4rem;
+            margin-bottom: 1rem;
         }
-    }
-}
 
-@media screen and (min-width: 800px) {
-    .about {
-        .mission {
-            h1 {
-                top: -8rem;
+        h2 {
+            font-size: clamp(1.6rem, 5vw, 2.2rem);
+            font-weight: 700;
+            color: $primary-text;
+        }
+
+        .pgSubtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: $secondary-text;
+            margin-top: -0.5rem; // Pull subtitle closer
+            margin-bottom: 1rem;
+        }
+
+        .pgTextColumns {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 75ch; // Limit paragraph width
+            margin-bottom: 1.5rem;
+
+            @media screen and (min-width: 768px) {
+                flex-direction: row; // Side by side columns for text
+                gap: 2rem;
+                 text-align: left;
             }
-    
-            h2 {
-                font-size: 3rem;
+
+            p {
+                font-size: 1rem;
+                line-height: 1.8;
+                color: $secondary-text;
+                flex: 1; // Equal width columns
+
+                strong { color: $primary-text; }
             }
         }
-    }
-}
 
-@media screen and (min-width: 900px) {
-    .about {
+        .pgChecklist {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0; // Add bottom margin
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            align-items: flex-start; // Align items left
+            text-align: left;
+            max-width: 75ch; // Match text width
+            width: 100%; // Ensure it takes available width
 
-        .mission h1 {
-            top: -15rem;
-        }
+            li {
+                display: flex;
+                align-items: flex-start;
+                gap: 0.8rem;
+                font-size: 1rem;
+                line-height: 1.7;
+                color: $secondary-text;
 
-        .story {
-            margin: 8rem auto;
-            max-width: 80rem;
-            flex-direction: row;
-            place-content: space-between;
-            gap: 4rem;
-
-            .aboutImg {
-                width: 40%;
+                svg {
+                    flex-shrink: 0;
+                    color: $check-color; // Green check color
+                    margin-top: 0.25em;
+                    width: 18px;
+                    height: 18px;
+                }
+                strong { color: $primary-text; }
             }
         }
-    }
-}
 
-@media screen and (min-width: 1600px) {
-    .about {
-        .team {
-            .teamMembers .member {
-                h4 {
-                    font-size: 1.5rem;
+        // Emphasis text style
+        .pgEmphasisText {
+            font-weight: 500;
+            color: $primary-text;
+             max-width: 75ch;
+             margin-bottom: 1.5rem; // Space before Marketing/AI part
+             text-align: left; // Ensure left align if within centered parent
+              @media screen and (max-width: 767px) {
+                  text-align: center; // Center on mobile maybe?
+              }
+        }
+
+        // Styles for Marketing/AI content within PG section
+        .marketingAiContent {
+             border-top: 1px solid $border-color; // Separator line
+             padding-top: 2rem; // Space above
+             margin-top: 1rem; // Space above separator
+             width: 100%;
+             max-width: 75ch; // Match text width
+             display: flex;
+             flex-direction: column;
+             gap: 1rem;
+             align-items: center; // Center content mobile
+
+             @media screen and (min-width: 768px) {
+                align-items: flex-start; // Align left desktop
+                text-align: left;
+             }
+
+            .subSectionHeader {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                width: 100%; // Take full width
+
+                h3 {
+                    font-size: 1.3rem;
+                    font-weight: 600;
+                    color: $primary-text;
                 }
 
-                span {
-                    font-size: 1rem;
+                svg {
+                    color: $secondary-text; // Or a different accent
                 }
-                
-                &:first-child {
-                    img {
-                        border-radius: 1rem 0 0 1rem;
-                    }
-                }
+            }
 
-                &:last-child {
-                    img {
-                        border-radius: 0 1rem 1rem 0;
-                    }
-                }
+             p {
+                 font-size: 1rem;
+                 line-height: 1.8;
+                 color: $secondary-text;
+                 max-width: none; // Let the container control width
             }
         }
 
-        .coreValues {
-            .values {
-                margin-top: 3rem;
-            }
-        }
+         .pgFinalText {
+             margin-top: 2rem; // Space above final text
+             font-size: 1rem;
+             line-height: 1.7;
+             color: $secondary-text;
+             font-style: italic;
+             max-width: 75ch; // Match text width
+         }
     }
+
+
+    // --- Final CTA ---
+     // Using TitleTextCta component, alignment set via props
+     // Add bottom margin for spacing before footer
+     > :global(.titleTextCta):last-of-type { // Target last TitleTextCta in main.about
+         margin-bottom: 6rem;
+         padding-top: 4rem; // Add some top padding to space it out
+     }
+
+     // Shared style for heading emojis if needed
+     .headingEmoji {
+         display: inline-block; // Prevent breaking line
+         margin-right: 0.25em; // Space after emoji
+         // Optional: Add vertical alignment if needed
+         // vertical-align: middle;
+     }
 }

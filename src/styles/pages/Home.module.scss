@@ -1,143 +1,312 @@
+// src/styles/pages/Home.module.scss
+
 // --- Variables ---
-$accent-color: #3b82f6; // Example accent color from Package.module.scss
+$accent-color: #3b82f6;
+$secondary-accent-color: #4f46e5;
+$primary-text: #111827;
+$secondary-text: #4b5563;
+$muted-text: #6b7280;
+$section-bg-light: #f7fafc;
+$section-bg-lighter: #ffffff;
+$card-border: #e2e8f0;
+
 
 .home {
-    padding: 0; // Remove default padding if sections handle their own
-    overflow-x: hidden; // Prevent horizontal scroll caused by animations/transforms
+    padding: 0; // Main container has no padding
+    // overflow-x: hidden; // This is handled globally now on html/body, but keep if specific issues arise
+    position: relative; // Good practice for containing absolute children if any directly inside
+    width: 100%; // Explicitly set width
+    max-width: 100%; // Prevent exceeding viewport
 
     // General Section Styling
     > section {
-        padding: 4rem 1rem; // Default vertical and horizontal padding for sections
-        &:nth-child(odd):not(:first-child) { // Add subtle background alternation
-             background-color: #f7fafc;
+        // --- Increased horizontal padding (Approach 1) ---
+        padding: 4rem 1.5rem; // Default vertical and horizontal padding (increased from 1rem)
+        // --- End Change ---
+
+        &:nth-child(even) {
+             background-color: $section-bg-light;
+        }
+        &:nth-child(odd) {
+            background-color: $section-bg-lighter;
         }
 
         @media screen and (min-width: 768px) {
-            padding: 5rem 1.5rem;
+            padding: 5rem 2rem; // Consistent padding increase for tablet
         }
         @media screen and (min-width: 1024px) {
-            padding: 6rem 2rem;
+            padding: 6rem 2.5rem; // Consistent padding increase for desktop
         }
     }
 
-    .services {
-        // Optional: Customize padding if needed
-        .title {
+    // --- STRATEGY CALL SECTION STYLES ---
+    .strategyCallSection {
+        background-color: $section-bg-lighter; // Keep background consistent
+
+        .contentWrapper {
+            max-width: 80rem;
+            margin: 0 auto;
             display: flex;
-            align-items: center;
             flex-direction: column;
-            gap: 1.5rem; // Increase gap slightly
-            margin-bottom: 3rem; // More space below title area
+            align-items: center;
+            gap: 2rem;
 
-            .categories {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 1rem 2rem; // Row and column gap
-
-                .category {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.6rem;
-
-                    span {
-                        font-size: 1rem;
-                        font-weight: 500; // Slightly less bold
-                        color: #475569; // Match secondary text color
-                    }
-                }
+            @media screen and (min-width: 992px) {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 3rem;
             }
         }
 
-        .servicesList {
-            display: grid; // Use grid for better control over wrapping items
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem; // Consistent gap
-            max-width: 80rem; // Limit width
-            margin: 0 auto; // Center the grid
+        .strategyLeftCol {
+            flex: 1 1 45%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: center;
+
+            @media screen and (min-width: 992px) {
+                text-align: left;
+                gap: 1.8rem;
+            }
         }
 
-        // Help text removed from example JSX, keep if needed
-        // .helpText { ... }
-    }
+        .strategyRightCol {
+            flex: 1 1 55%;
+            width: 100%;
+        }
 
-    .pricingSection { // Renamed from .steps
-        background-color: #f1f5f9; // Example slightly different background
+        p { // Default paragraph styling adjusted
+            color: $secondary-text;
+            line-height: 1.7;
+            font-size: 1rem;
+            max-width: 65ch; // Readable line length
+             @media screen and (min-width: 768px) {
+                 font-size: 1.05rem;
+             }
+             @media screen and (min-width: 992px) {
+                max-width: none; // Remove max-width when in columns
+             }
+        }
+
+        .introEmphasis {
+            font-size: 1.1rem;
+            color: $primary-text;
+             @media screen and (min-width: 768px) {
+                 font-size: 1.2rem;
+             }
+        }
+        .subtleEmphasis {
+            font-weight: 500;
+            color: $primary-text;
+        }
+
+        .iconList {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center; // Center items on mobile
+            gap: 0.8rem;
+            text-align: left; // Keep text aligned left
+            max-width: 550px;
+            width: 90%; // Control width on mobile
+
+             @media screen and (min-width: 992px) {
+                align-items: flex-start; // Align left on desktop
+                width: 100%;
+                max-width: none;
+             }
+
+            li {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                font-size: 1rem;
+                color: $secondary-text;
+            }
+
+            .icon {
+                flex-shrink: 0;
+                width: 1.4rem;
+                height: 1.4rem;
+                color: $secondary-accent-color;
+            }
+        }
+
+        .transitionText {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: $primary-text;
+            margin: 1rem 0;
+            line-height: 1.5;
+            @media screen and (min-width: 768px) {
+                font-size: 1.6rem;
+            }
+        }
+
+        .callOfferBox {
+            background-color: $section-bg-light;
+            border: 1px solid $card-border;
+            border-radius: 1rem;
+            padding: 2rem 1.5rem;
+            width: 100%; // Takes full width of its column now
+            max-width: none; // Remove max-width here
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; // Align content left within the box
+            text-align: left; // Default text align left
+            gap: 1rem;
+             @media screen and (min-width: 768px) {
+                padding: 2.5rem;
+             }
+
+            h2 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: $primary-text;
+                 @media screen and (min-width: 768px) {
+                     font-size: 1.8rem;
+                 }
+            }
+
+            .priceHighlight {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: $secondary-accent-color;
+                margin-bottom: 0.5rem;
+                 @media screen and (min-width: 768px) {
+                     font-size: 1.25rem;
+                 }
+            }
+
+            h3 {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: $primary-text;
+                margin-top: 1rem;
+                margin-bottom: 0.5rem;
+                 @media screen and (min-width: 768px) {
+                     font-size: 1.3rem;
+                 }
+            }
+
+            ul { // Shared style for checkList and targetList within the box
+                list-style: none;
+                padding: 0;
+                margin: 0 0 0.5rem 0; // Add bottom margin
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+                gap: 0.75rem;
+                width: 100%; // Full width
+
+                li {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 0.75rem;
+                    font-size: 0.95rem;
+                    color: $secondary-text;
+                    line-height: 1.6;
+                }
+            }
+
+            .checkList .checkIcon {
+                flex-shrink: 0; width: 1.2rem; height: 1.2rem; color: #10b981; margin-top: 0.2em;
+            }
+            .targetList .targetIcon {
+                flex-shrink: 0; width: 1.2rem; height: 1.2rem; color: $accent-color; margin-top: 0.2em;
+            }
+
+            .clarification {
+                margin-top: 0.5rem; // Reduced margin
+                font-size: 0.9rem;
+                color: $muted-text;
+                font-style: italic;
+                width: 100%; // Ensure it takes width
+                 @media screen and (min-width: 768px) {
+                     font-size: 0.95rem;
+                 }
+            }
+
+            .ctaButton {
+                // Styles remain the same, but alignment is now handled by flex parent
+                 align-self: flex-start; // Align button left within the box
+                 margin-top: 1.5rem;
+                 display: inline-block;
+                 background-color: $secondary-accent-color;
+                 color: white;
+                 padding: 0.8rem 1.8rem;
+                 border-radius: 999px;
+                 border: none;
+                 font-size: 1rem;
+                 font-weight: 600;
+                 cursor: pointer;
+                 transition: background-color 0.2s ease, transform 0.1s ease;
+
+                 &:hover { background-color: darken($secondary-accent-color, 10%); }
+                 &:active { transform: scale(0.98); }
+            }
+        }
+    }
+    // --- END OF STRATEGY CALL SECTION STYLES ---
+
+
+    .pricingSection {
+        background-color: $section-bg-light; // Keep consistent background
 
         .packageGrid {
-            width: 100%; // Use full width within section padding
+            width: 100%;
             max-width: 80rem;
             margin: 3rem auto 0 auto;
             display: grid;
-            grid-template-columns: 1fr; // Mobile: Stack columns
+            grid-template-columns: 1fr;
             gap: 2rem;
-            align-items: stretch; // Stretch cards to equal height
+            align-items: stretch;
 
             @media screen and (min-width: 768px) {
-                // Tablet: Fit as many as possible >= 320px
                 grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
                 gap: 1.5rem;
             }
 
             @media screen and (min-width: 1024px) {
-                // Desktop: 3 equal columns
                 grid-template-columns: repeat(3, 1fr);
                 gap: 1.5rem;
-                align-items: flex-start; // Or stretch, depending on design preference
+                align-items: flex-start;
             }
 
-            // --- Override Package Component Styles ---
-            // Use :global only if Package.module.scss IS a CSS Module file
-            // If Package.module.scss is just plain SCSS, remove :global()
             :global(.package) {
-                margin: 0 !important; // Reset all margins
-                padding: 0 !important; // Reset all padding
-                transition: transform 0.3s ease, box-shadow 0.3s ease; // Add transition for hover/featured scale
+                margin: 0 !important;
+                padding: 0 !important;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-                // --- Adjust H1 Background Number ---
-                h1 {
-                    // Option: Hide it completely in grid view (Recommended for clean comparison)
-                    display: none !important;
+                h1 { display: none !important; }
 
-                    // Option: Smaller/Repositioned (Use if really needed)
-                    /*
-                    font-size: 5rem !important;
-                    top: 0.5rem !important; // Adjusted position
-                    left: auto !important;
-                    right: 1rem !important;
-                    line-height: 1;
-                    background: linear-gradient(0deg, rgba(230, 238, 248, 0.1) 0%, rgba(200, 215, 235, 0.3) 100%) !important;
-                    z-index: 1;
-                    */
-                }
-
-                // --- Featured Package Styling ---
                 &.featured {
                     border: 2px solid $accent-color;
-                    box-shadow: 0 10px 35px rgba(59, 130, 246, 0.25); // Slightly stronger shadow
-                    transform: scale(1.03); // Scale up slightly
-                    z-index: 10; // Bring it visually forward
+                    box-shadow: 0 10px 35px rgba(59, 130, 246, 0.25);
+                    transform: scale(1.03);
+                    z-index: 10;
 
-                    // --- Featured Badge ---
-                    // Ensure .featuredBadge class exists in Package.js
                     .featuredBadge {
                         position: absolute;
-                        top: 0; // Align with top border
+                        top: 0;
                         left: 50%;
-                        transform: translate(-50%, -50%); // Center horizontally, move up vertically
+                        transform: translate(-50%, -50%);
                         background-color: $accent-color;
                         color: white;
                         padding: 0.35rem 1rem;
-                        border-radius: 999px; // Pill shape
+                        border-radius: 999px;
                         font-size: 0.75rem;
                         font-weight: 600;
-                        z-index: 11; // Above the card
+                        z-index: 11;
                         white-space: nowrap;
                     }
                 }
 
-                 &:not(.featured):hover { // Add subtle hover to non-featured cards
+                 &:not(.featured):hover {
                      transform: translateY(-5px);
                      box-shadow: 0 8px 25px rgba(100, 116, 139, 0.15);
                  }
@@ -145,20 +314,20 @@ $accent-color: #3b82f6; // Example accent color from Package.module.scss
         }
     }
 
+    // --- SUCCESS STORIES SECTION ---
     .successStories {
-        // Styling for the success stories section if uncommented
-        padding: 5rem 0; // Keep padding consistent
-
+        // Example section if uncommented in JSX
         .projects {
-            display: grid; // Use grid here too
+            display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             max-width: 80rem;
-            margin: 3rem auto 0 auto; // Consistent spacing
+            margin: 3rem auto 0 auto;
         }
     }
 
+    // --- REVIEWS SECTION ---
     .reviews {
-        // Optional: Custom padding or background
+       // Relies on component styles primarily
     }
 }

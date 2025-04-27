@@ -2,7 +2,52 @@
 
 import React, { useState } from "react";
 import styles from "../../styles/pages/Faq.module.scss";
-import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi";
+import { HiOutlineChevronDown } from "react-icons/hi"; // Removed HiOutlineChevronUp as rotation handles it
+import { motion, AnimatePresence } from "framer-motion";
+
+// --- Animation Variants (Can reuse from Home or define here) ---
+const sectionVariant = { // For the overall section or header
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const itemVariant = { // For individual FAQ cards
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+};
+
+const gridStagger = { // For staggering the FAQ cards
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.1, // Adjust stagger delay (faster for list)
+            delayChildren: 0.1 // Optional delay before staggering starts
+        }
+    }
+};
+
+// Answer animation variants (already defined in previous code)
+const answerVariants = {
+    hidden: { opacity: 0, height: 0, marginTop: 0, marginBottom: 0 },
+    visible: {
+      opacity: 1,
+      height: "auto",
+      marginTop: "0.75rem",
+      marginBottom: "0.25rem",
+      transition: { duration: 0.3, ease: "easeInOut" },
+    },
+    exit: {
+        opacity: 0,
+        height: 0,
+        marginTop: 0,
+        marginBottom: 0,
+        transition: { duration: 0.2, ease: "easeInOut" }
+    }
+};
 
 const faqs = [
   {
@@ -55,37 +100,79 @@ const FaqPage = () => {
   };
 
   return (
-    <section className={styles.faq}>
-      <img className={styles.graphic} src="/images/contact_graphic.png" />
-      <div className={styles.header}>
+    // Wrap the entire section for a possible initial load animation (optional)
+    <motion.section
+        className={styles.faq}
+        // Optional: Add overall section animation if desired
+        // initial="hidden"
+        // animate="visible"
+        // variants={sectionVariant}
+    >
+      {/* Graphic doesn't usually need animation */}
+      <img className={styles.graphic} src="/images/contact_graphic.png" alt=""/>
+
+      {/* Animate the header */}
+      <motion.div
+        className={styles.header}
+        initial="hidden"
+        animate="visible" // Animate header on load
+        variants={sectionVariant}
+        transition={{ delay: 0.1 }} // Slight delay after page load
+      >
         <h1>Frequently Asked Questions</h1>
         <p>Still wondering how we work? We've got you covered.</p>
-      </div>
+      </motion.div>
 
-      <div className={styles.list}>
+      {/* Animate the list container with stagger */}
+      <motion.div
+        className={styles.list}
+        variants={gridStagger}
+        initial="hidden"
+        whileInView="visible" // Animate list when it scrolls into view
+        viewport={{ once: true, amount: 0.1 }} // Trigger when 10% of list is visible
+      >
         {faqs.map((item, index) => (
-          <div
+          // Animate each card item
+          <motion.div
             className={`${styles.card} ${openIndex === index ? styles.open : ""}`}
             key={index}
-            onClick={() => toggle(index)}
+            variants={itemVariant} // Apply item animation
+            // layout // Optional: Add layout prop if needed for smoother open/close size changes
           >
-            <div className={styles.question}>
+            <button
+              className={styles.question}
+              onClick={() => toggle(index)}
+              aria-expanded={openIndex === index}
+              aria-controls={`faq-answer-${index}`}
+            >
               <h3>{item.question}</h3>
-              {openIndex === index ? (
-                <HiOutlineChevronUp />
-              ) : (
+              <motion.span
+                className={styles.iconWrapper}
+                animate={{ rotate: openIndex === index ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
                 <HiOutlineChevronDown />
+              </motion.span>
+            </button>
+
+            <AnimatePresence initial={false}>
+              {openIndex === index && (
+                <motion.div
+                  id={`faq-answer-${index}`}
+                  className={styles.answerContainer}
+                  variants={answerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                >
+                  <p className={styles.answerText}>{item.answer}</p>
+                </motion.div>
               )}
-            </div>
-            {openIndex === index && (
-              <div className={styles.answer}>
-                <p>{item.answer}</p>
-              </div>
-            )}
-          </div>
+            </AnimatePresence>
+          </motion.div>
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 

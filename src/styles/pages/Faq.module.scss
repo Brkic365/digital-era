@@ -1,118 +1,157 @@
+// src/styles/pages/Faq.module.scss
+
+// Variables (consider defining globally)
+$primary-text: #111827;
+$secondary-text: #4b5563;
+$border-color: #e5e7eb;
+$card-bg: #ffffff;
+$card-bg-hover: #f9fafb;
+$card-bg-open: #f7f8fc; // Slightly different open bg
+$accent-color: #3b82f6; // Or your theme's accent
+
 .faq {
-    padding: 4rem 1.5rem;
-    max-width: 900px;
+    padding: 4rem 1.5rem 6rem 1.5rem; // Added more bottom padding
+    max-width: 1100px; // Allow wider content for grid
     margin: auto;
-    font-family: 'Inter', sans-serif;
     position: relative;
+    font-family: 'Poppins', sans-serif; // Use Poppins if available globally
 
     .graphic {
         position: absolute;
         width: 100%;
+        max-width: 800px; // Limit graphic size
         z-index: 1;
-        top: 0;
-        left: 0;
-      }
-  
+        top: -5%; // Adjust positioning
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0.08; // Make it much fainter
+        pointer-events: none; // Don't interfere with clicks
+    }
+
     .header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 4rem; // Increased space below header
       z-index: 2;
       position: relative;
-  
+
       h1 {
-        font-size: 2rem;
+        font-size: clamp(1.8rem, 5vw, 2.8rem); // Responsive size
         font-weight: 700;
+        color: $primary-text;
         position: relative;
-  
+        margin-bottom: 0.5rem; // Space between h1 and underline effect
+
+        // Keep underline effect or remove if desired
         &::after {
             content: "";
             position: absolute;
-            width: 60%;
-            height: 1.5rem;
-            background: #e8f1fa;
-            bottom: -0.25rem;
+            width: 80px; // Fixed width or percentage
+            height: 4px; // Thicker underline
+            background: $accent-color; // Use accent color
+            bottom: -0.75rem; // Position below text
             left: 50%;
             transform: translateX(-50%);
             z-index: -1;
+            border-radius: 2px;
           }
       }
-  
+
       p {
-        font-size: 0.95rem;
-        margin-top: 0.75rem;
-        color: #555;
+        font-size: 1rem;
+        margin-top: 1.5rem; // Space above paragraph
+        color: $secondary-text;
+        max-width: 60ch;
+        margin-left: auto;
+        margin-right: auto;
       }
-    }
-  
-    .list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 2;
-      position: relative;
-    }
-  
-    .card {
-      background: #f9fafb;
-      border-radius: 1rem;
-      padding: 1.25rem 1.5rem;
-      border: 1px solid #e5e7eb;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 2;
-      position: relative;
-  
-      .question {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-  
-        h3 {
-          font-size: 1rem;
-          font-weight: 600;
-          margin: 0;
-        }
-  
-        svg {
-          width: 1.25rem;
-          height: 1.25rem;
-          color: #4b5563;
-          transition: transform 0.2s ease;
-        }
-      }
-  
-      .answer {
-        margin-top: 0.75rem;
-        font-size: 0.95rem;
-        color: #4b5563;
-        line-height: 1.6;
-        z-index: 2;
-        position: relative;
-      }
-  
-      &:hover {
-        background: #f3f4f6;
-      }
-    }
-  
-    .open {
-      background: #eef2f7;
-      border-color: #d1d5db;
-      z-index: 2;
-      position: relative;
     }
 
-    @media (min-width: 800px) {
-        .header {
-          h1 {
-            font-size: 3rem;
-  
-            &:after {
-              width: 80%;
-              bottom: 0.25rem;
-            }
-          }
+    .list {
+      display: grid; // Use grid layout
+      grid-template-columns: 1fr; // Single column by default
+      gap: 1rem; // Gap between cards
+      z-index: 2;
+      position: relative;
+
+       @media screen and (min-width: 768px) { // Apply 2 columns on tablet+
+           grid-template-columns: 1fr 1fr; // Two equal columns
+           gap: 1.5rem; // Increase gap for grid
+       }
+
+        @media screen and (min-width: 1024px) {
+            gap: 1.8rem; // Slightly larger gap on desktop
         }
+    }
+
+    .card {
+      background: $card-bg;
+      border-radius: 0.75rem; // Slightly softer radius
+      border: 1px solid $border-color;
+      transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      z-index: 2;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+
+      &:hover {
+        background: $card-bg-hover;
+        border-color: darken($border-color, 5%);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       }
+
+      // Styling for the question part when used as a button
+      .question {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1.25rem 1.5rem; // Consistent padding
+          cursor: pointer;
+          width: 100%;
+          text-align: left;
+          background: none; // Reset button background
+          border: none; // Reset button border
+          font-family: inherit; // Inherit font
+
+          h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0;
+            color: $primary-text;
+            line-height: 1.4; // Ensure good line height
+            padding-right: 1rem; // Space between text and icon
+          }
+      }
+
+       .iconWrapper {
+           display: inline-flex; // To allow rotation transform
+           color: $secondary-text;
+           flex-shrink: 0; // Prevent icon from shrinking
+       }
+
+      // Container for the animated answer content
+      .answerContainer {
+          overflow: hidden; // CRUCIAL for height animation
+          padding: 0 1.5rem; // Horizontal padding matches question
+          // Vertical padding/margin controlled by animation variants
+      }
+
+      .answerText {
+          font-size: 0.95rem;
+          color: $secondary-text;
+          line-height: 1.7;
+          padding-bottom: 1.25rem; // Add padding at the bottom of the text itself
+      }
+    }
+
+    // Styles for the open card state
+    .open {
+      background: $card-bg-open;
+      border-color: darken($border-color, 10%); // Slightly darker border when open
+
+      .question h3 {
+           color: $accent-color; // Highlight question text when open
+      }
+      .iconWrapper {
+          color: $accent-color; // Highlight icon when open
+      }
+    }
   }
-  
