@@ -115,19 +115,19 @@ function About() {
             {/* Wrap each card in motion.div */}
             <motion.div className={styles.expertCard} variants={itemVariant}>
                  <div className={styles.expertIconWrapper}><Code2 size={30} /></div>
-                 <h4><span className={styles.cardEmoji} role="img" aria-label="laptop computer">💻</span> Elite Developers</h4>
+                 <h4>Elite Developers</h4>
                  <p>We work with top-tier developers experienced in building high-performance websites, e-commerce stores, membership platforms, and custom digital systems designed for conversion and scale.</p>
             </motion.div>
 
             <motion.div className={styles.expertCard} variants={itemVariant}>
                  <div className={styles.expertIconWrapper}><Scale size={30} /></div>
-                 <h4><span className={styles.cardEmoji} role="img" aria-label="balance scale">⚖️</span> International Business Lawyers</h4>
+                 <h4>International Business Lawyers</h4>
                  <p>Our legal partners include some of the most respected professionals in the field — especially in high-leverage jurisdictions like the UAE — providing expert guidance on structuring, compliance, and contracts.</p>
             </motion.div>
 
             <motion.div className={styles.expertCard} variants={itemVariant}>
                  <div className={styles.expertIconWrapper}><BookUser size={30} /></div>
-                 <h4><span className={styles.cardEmoji} role="img" aria-label="bar chart">📊</span> Accountants & Global Tax Advisors</h4>
+                 <h4>Accountants & Global Tax Advisors</h4>
                  <p>We refer you to expert accountants who understand international and local tax law, ensuring {"you're"} set up to operate efficiently and legally pay less tax based on your citizenship and business model.</p>
             </motion.div>
 

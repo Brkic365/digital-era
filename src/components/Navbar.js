@@ -16,6 +16,11 @@ export default function Navbar() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  const handleLinkClick = (route) => {
+    router.push(route);
+    toggleMenu();
+  }
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.logoArea} onClick={() => router.push("/")}>
@@ -44,9 +49,9 @@ export default function Navbar() {
             transition={{ duration: 0.3 }}
             className={styles.mobileMenu}
           >
-            <Link href="/about">About Us</Link>
-            <Link href="/faq">FAQ</Link>
-            <Link href="/contact">Contact Us</Link>
+            <p onClick={() => handleLinkClick("/about")}>About Us</p>
+            <p onClick={() => handleLinkClick("/faq")}>FAQ</p>
+            <p onClick={() => handleLinkClick("/contact")}>Contact Us</p>
           </motion.div>
         )}
       </AnimatePresence>
