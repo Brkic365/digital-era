@@ -102,7 +102,7 @@ const TermsPage = () => {
       <motion.p variants={itemVariant}>
         If you have any questions or concerns about these Terms of Service, please contact us at:
       </motion.p>
-      <motion.p variants={itemVariant}>Email: [Insert Contact Email]</motion.p>
+      <motion.p variants={itemVariant}>Email:  info@the-digital-era.com</motion.p>
       <motion.p variants={itemVariant}>Phone: [Insert Phone Number]</motion.p>
 
       <motion.p variants={itemVariant} className={styles.notice}>

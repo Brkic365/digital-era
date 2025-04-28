@@ -83,15 +83,8 @@ const ContactPage = () => {
             <h4>Chat with Us</h4>
             <p>Speak to our friendly team via chat.</p>
             <ul>
-              <li><HiOutlineMail /> <a href="mailto:hello@example.com">Shoot us an email</a></li>
-              <li><FaXTwitter /> <a href="#">Message us on X</a></li>
+              <li><HiOutlineMail /> <a href="mailto:info@the-digital-era.com">Shoot us an email</a></li>
             </ul>
-          </motion.div>
-
-          <motion.div variants={itemVariant}>
-            <h4>Call Us</h4>
-            <p>Call our team {"Mon–Fri"} from 8am to 9pm.</p>
-            <p><HiOutlinePhone /> <a href="tel:+15550000000">+1 (555) {"000–0000"}</a></p>
           </motion.div>
         </motion.div>
       </motion.div>

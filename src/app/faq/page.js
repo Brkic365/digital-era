@@ -80,7 +80,7 @@ const faqs = [
   },
   {
     question: "Which package is best for me?",
-    answer: "That’s exactly what the $39.99 consultation is for. We’ll go over your current situation, goals, and experience — then recommend the most suitable package for your level. There’s no pressure, just honest advice to help you make the best decision.",
+    answer: "That’s exactly what the $99.99 consultation is for. We’ll go over your current situation, goals, and experience — then recommend the most suitable package for your level. There’s no pressure, just honest advice to help you make the best decision.",
   },
   {
     question: "Can you help me if I already have a business?",

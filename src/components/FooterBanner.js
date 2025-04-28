@@ -6,7 +6,7 @@ import { Plane, Calendar, Mail } from 'lucide-react'; // Keep needed icons
 function FooterBanner() {
   // Placeholders - replace with actual links/email
   const bookingLink = "/contact"; // Or your Calendly/booking page link
-  const contactEmail = "hello@digitalera.com"; // Replace with your actual email
+  const contactEmail = "info@the-digital-era.com"; // Replace with your actual email
 
   return (
     <section className={styles.footerBanner}>
@@ -30,7 +30,7 @@ function FooterBanner() {
         {/* Consultation Offer */}
         <div className={styles.consultationOffer}>
           <p>
-            👉 Start with a 20-Min Consultation — Only $39.99
+            👉 Start with a 20-Min Consultation — Only $99.99
           </p>
         </div>
 

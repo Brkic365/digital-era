@@ -13,8 +13,8 @@ import ReviewCarouselOrGrid from "../components/ReviewCarousel";
 import FooterBanner from "../components/FooterBanner";
 import { motion } from "framer-motion"; // Import motion
 import {
-  Rocket, TrendingUp, Star, Handshake, Palette, Code, Banknote, LineChart,
-  CheckCircle2, Plane, Bot, Landmark, Target
+  Rocket, TrendingUp, Star, Scale, Building2, CreditCard, Sparkles,
+  Network, Plane, Bot, Landmark, Target
 } from 'lucide-react';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import ArrowButton from "../components/ArrowButton";
@@ -72,7 +72,7 @@ export default function Home() {
       >
         <Hero
             title="Welcome to Digital Era"
-            subtitle="Build Your Online Business. Travel the World. Work from Anywhere. We help you turn ideas into income-generating online businesses you can run globally."
+            subtitle="Build Your Online Business. Travel the World. Work from Anywhere. Become a Digital-Nomad. We help you turn ideas into income-generating online businesses you can run globally."
             cta={{
             text: "Get Started",
             href: "/contact"
@@ -98,15 +98,19 @@ export default function Home() {
                  <motion.p variants={itemVariant} className={styles.introEmphasis}>
                     At Digital Era, we help you create the life most people only dream about — by turning your ideas and skills into a powerful, income-generating online business you can run from anywhere in the world.
                 </motion.p>
-                <motion.p variants={itemVariant} className={styles.subtleEmphasis}>But we go beyond just business setup. We show you how to:</motion.p>
-                <motion.ul className={styles.iconList} variants={listStagger}> {/* Stagger list items */}
-                    <motion.li variants={itemVariant}><Landmark className={styles.icon} /><span>Pay less or zero taxes (legally)</span></motion.li>
-                    <motion.li variants={itemVariant}><Landmark className={styles.icon} /><span>Set up your company in high-leverage jurisdictions like the UAE</span></motion.li>
-                    <motion.li variants={itemVariant}><Bot className={styles.icon} /><span>Automate operations with AI-powered employees</span></motion.li>
-                    <motion.li variants={itemVariant}><Plane className={styles.icon} /><span>And even travel first class for free using smart credit card strategies tailored to your country</span></motion.li>
-                </motion.ul>
+                <motion.p variants={itemVariant} className={styles.subtleEmphasis}>But we {"don’t"} stop at business setup. We provide a full ecosystem designed for your success:</motion.p>
+                  <motion.ul className={styles.iconList} variants={listStagger}> {/* Stagger list items */}
+                      <motion.li variants={itemVariant}><Scale className={styles.icon} /><span>Legal strategies to reduce or eliminate your taxes</span></motion.li>
+                      <motion.li variants={itemVariant}><Building2 className={styles.icon} /><span>Company formation in high-leverage jurisdictions like the UAE</span></motion.li>
+                      <motion.li variants={itemVariant}><CreditCard className={styles.icon} /><span>Seamless payment gateway setup, even for high-risk industries</span></motion.li>
+                      <motion.li variants={itemVariant}><Bot className={styles.icon} /><span>Automation with AI-powered virtual employees to save time and scale faster</span></motion.li>
+                      <motion.li variants={itemVariant}><Target className={styles.icon} /><span>1-on-1 mentorship and strategic checkups to keep you on the right path</span></motion.li>
+                      <motion.li variants={itemVariant}><Plane className={styles.icon} /><span>First-class travel for free using smart, country-specific credit card strategies</span></motion.li>
+                      <motion.li variants={itemVariant}><Network className={styles.icon} /><span>Access to our trusted network of world-class marketers, developers, accountants, and legal experts</span></motion.li>
+                      <motion.li variants={itemVariant}><Sparkles className={styles.icon} /><span>And much more — all designed to put you on the fastest path to freedom and success</span></motion.li>
+                  </motion.ul>
                 <motion.h3 variants={itemVariant} className={styles.transitionText}>
-                    This is more than entrepreneurship. <br/>It’s freedom engineering — and you’re in the right place.
+                    This is more than entrepreneurship. <br/>{"It’s freedom engineering — and you’re"} in the right place.
                 </motion.h3>
             </motion.div>
 
@@ -137,10 +141,10 @@ export default function Home() {
                     <h3><span role="img" aria-label="Rocket">🚀</span> Who This Call Is Perfect For:</h3>
                     {/* You could stagger these list items too */}
                     <ul className={styles.targetList}>
-                      <li><Target className={styles.targetIcon} /><span>You have an idea, side hustle, or skill but don’t know how to turn it into a business</span></li>
-                      <li><Target className={styles.targetIcon} /><span>You’re overwhelmed with options — LLCs, offshore, taxes, websites, AI — and need clarity</span></li>
+                      <li><Target className={styles.targetIcon} /><span>You have an idea, side hustle, or skill but {"don’t"} know how to turn it into a business</span></li>
+                      <li><Target className={styles.targetIcon} /><span>{"You’re"} overwhelmed with options — LLCs, offshore, taxes, websites, AI — and need clarity</span></li>
                       <li><Target className={styles.targetIcon} /><span>You want expert eyes on your vision and how to scale it from day one</span></li>
-                      <li><Target className={styles.targetIcon} /><span>You’re ready to invest in yourself and your freedom, but want to make the right move</span></li>
+                      <li><Target className={styles.targetIcon} /><span>{"You’re"} ready to invest in yourself and your freedom, but want to make the right move</span></li>
                     </ul>
                     <Link href="/contact" passHref>
                        <button className={styles.ctaButton}>Book Your $99.99 Strategy Session</button>
