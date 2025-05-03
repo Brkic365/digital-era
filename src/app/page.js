@@ -3,21 +3,16 @@
 import Image from "next/image";
 import styles from "../styles/pages/Home.module.scss";
 import Hero from "../components/Hero";
-import GradientIcon from "../components/GradientIcon";
-// import ServiceCard from "../components/ServiceCard"; // Still commented out
 import Link from "next/link";
 import TitleTextCta from "../components/TitleTextCta";
-import Package from "../components/Package";
-// import ProjectCard from "../components/ProjectCard"; // Still commented out
 import ReviewCarouselOrGrid from "../components/ReviewCarousel";
 import FooterBanner from "../components/FooterBanner";
 import { motion } from "framer-motion"; // Import motion
 import {
-  Rocket, TrendingUp, Star, Scale, Building2, CreditCard, Sparkles,
-  Network, Plane, Bot, Landmark, Target
+  Code2, BookUser, User, Scale, Building2, CreditCard, Sparkles,
+  Network, Plane, Bot, Target
 } from 'lucide-react';
 import { BsCheckCircleFill } from 'react-icons/bs';
-import ArrowButton from "../components/ArrowButton";
 
 // --- Animation Variants ---
 const sectionVariant = {
@@ -49,13 +44,13 @@ const listStagger = {
 };
 
 const gridStagger = {
-    hidden: {},
-    visible: {
-        transition: {
-            staggerChildren: 0.2, // Delay between grid items (packages)
-        }
-    }
-}
+  hidden: {},
+  visible: {
+      transition: {
+          staggerChildren: 0.15, // Stagger delay for grid items
+      }
+  }
+};
 
 
 export default function Home() {
@@ -122,7 +117,7 @@ export default function Home() {
                     Only $99.99 for 15 Minutes That Could Change Everything
                     </p>
                     <p>
-                    Not sure where to begin? Have a big idea but not sure how to launch it? Let’s talk.
+                    Not sure where to begin? Not sure what <Link href="/packages">package</Link> is best for you? Have a big idea but not sure how to launch it? Let’s talk.
                     For just $99.99, you’ll get a 15-minute private strategy session with a Digital Era advisor — designed to give you absolute clarity and direction on your next step.
                     </p>
                     <h3>What You’ll Get in Your Call:</h3>
@@ -155,42 +150,60 @@ export default function Home() {
       </motion.section>
       {/* END OF STRATEGY CALL SECTION */}
 
-      {/* PRICING SECTION (Packages) */}
+      {/* --- TEAM / NETWORK SECTION --- */}
       <motion.section
-        id="pricing"
-        className={styles.pricingSection}
+        className={styles.teamNetworkSection}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }} // Trigger earlier for section title
+        viewport={{ once: true, amount: 0.1 }} // Trigger earlier
         variants={sectionVariant}
       >
-        {/* TitleTextCta could potentially be wrapped in motion.div too */}
-        <TitleTextCta
-            title="Choose Your Subscription Package"
-            subtitle="At Digital Era, we offer more than just services—we offer a partnership. We believe in empowering you with the knowledge and resources you need to make informed decisions and grow your business successfully."
-            cta={null}
-            align="center"
-            crumbText="Pricing Plans"
-          />
-        <motion.section
-            className={styles.packageGrid}
-            variants={gridStagger} // Apply stagger to the grid container
+         {/* Animate Header and Intro */}
+         <motion.div className={styles.teamHeader} variants={itemVariant}>
+             <h2>Meet the Digital Era Team</h2>
+             <p className={styles.teamSubtitle}>World-Class Experts. One Unified Mission.</p>
+         </motion.div>
+        <motion.div className={styles.teamIntroText} variants={itemVariant}>
+          <p>While Shubeg leads the vision, Digital {"Era's"} strength lies in its team — a global network of specialists dedicated to helping clients succeed in today’s fast-moving digital landscape.</p>
+          <p>{"We’ve"} handpicked our team from top-performing professionals across multiple disciplines — not just for their technical skill, but for their integrity, transparency, and results-driven mindset. Each member is committed to ensuring our clients receive not only expert advice but real-world implementation that delivers lasting impact.</p>
+          <p>Our trusted team & partner networks includes:</p>
+        </motion.div>
+
+        {/* Animate Grid with Stagger */}
+        <motion.div
+            className={styles.expertsGrid}
+            variants={gridStagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }} // Trigger when grid starts appearing
+            viewport={{ once: true, amount: 0.1 }}
         >
-          {/* Wrap each Package in motion.div and apply itemVariant */}
-          <motion.div variants={itemVariant}>
-             <Package index={1} icon={Rocket} title="Beginner Package – Launch Essentials" price={99.99} about="Perfect for first-time digital nomads and new entrepreneurs." listTitle="Includes:" checks={[ "1-on-1 consultation call once a month (30 Minutes)", "Business structure + legal overview", "Website & branding support", "Access to curated startup tools & templates", "Developer + accountant + lawyer recommendations based on your location and business" ]} minuses={[ "Travel hacking & credit card setup not included", "No direct AI setup or mentorship included" ]} />
-          </motion.div>
-          <motion.div variants={itemVariant}>
-             <Package index={2} icon={TrendingUp} title="Full Package – Build & Grow" price={199.99} about="Built for creators, coaches, freelancers & e-com entrepreneurs ready to scale." listTitle="Includes:" isFeatured={true} checks={[ "Everything in the Beginner Package", "1-on-1 consultation call with CEO & Founder Shubeg Singh once a month (30 Minutes)", "Full credit card strategy setup for free first-class/business travel", "AI employee systems setup — automate your work using tools like ChatGPT & custom workflows", "UAE LLC / international company formation assistance", "Email funnel & lead gen strategy", "Access to our top-tier developers and marketing partners", "Region-based accountant match for tax optimization", "Smart banking, payment processing, and invoicing solutions", "Payment gateway setup & advisory – We’ll help you choose the best, most reliable payment processors based on your company location and products. Avoid frozen funds and get paid faster with the right strategy." ]} />
-          </motion.div>
-          <motion.div variants={itemVariant}>
-             <Package index={3} icon={Star} title="Premium Package – Scale Like a Pro" price={299.99} about="For advanced entrepreneurs scaling into global brands or digital empires." listTitle="Includes:" checks={[ "Everything in the Full Package", "Weekly private consultations with CEO & Founder Shubeg Singh (30 Minutes)", "Deep-dive AI automation & hiring of AI employees (virtual assistants, support agents, etc.)", "Hands-on business concierge service", "Full e-commerce, membership, or course platform builds", "Custom marketing & ad campaign execution", "International tax planning & investment structuring", "Travel hacking support: fly first class for free with the best cards in your country", "Premium access to UAE LLC setup & legal partners" ]} />
-          </motion.div>
-        </motion.section>
+            {/* Wrap each card in motion.div */}
+            <motion.div className={styles.expertCard} variants={itemVariant}>
+                 <div className={styles.expertIconWrapper}><Code2 size={30} /></div>
+                 <h4>Elite Developers</h4>
+                 <p>We work with top-tier developers experienced in building high-performance websites, e-commerce stores, membership platforms, and custom digital systems designed for conversion and scale.</p>
+            </motion.div>
+
+            <motion.div className={styles.expertCard} variants={itemVariant}>
+                 <div className={styles.expertIconWrapper}><Scale size={30} /></div>
+                 <h4>International Business Lawyers</h4>
+                 <p>Our legal partners include some of the most respected professionals in the field — especially in high-leverage jurisdictions like the UAE — providing expert guidance on structuring, compliance, and contracts.</p>
+            </motion.div>
+
+            <motion.div className={styles.expertCard} variants={itemVariant}>
+                 <div className={styles.expertIconWrapper}><BookUser size={30} /></div>
+                 <h4>Accountants & Global Tax Advisors</h4>
+                 <p>We refer you to expert accountants who understand international and local tax law, ensuring {"you're"} set up to operate efficiently and legally pay less tax based on your citizenship and business model.</p>
+            </motion.div>
+
+            <motion.div className={`${styles.expertCard} ${styles.summaryCard}`} variants={itemVariant}>
+                 <div className={styles.expertIconWrapper}><User size={30} /></div>
+                 <h4>Your Success is the Goal</h4>
+                 <p>At every stage, Digital Era connects you to proven, trustworthy professionals — while guiding the entire process to ensure your business is built smarter, faster, and with full transparency.</p>
+            </motion.div>
+        </motion.div>
       </motion.section>
+      {/* --- END TEAM / NETWORK SECTION --- */}
 
       {/* REVIEWS SECTION */}
       <motion.section

@@ -51,7 +51,7 @@ const answerVariants = {
 
 const faqs = [
   {
-    question: "What’s included in the $79.99 strategy session?",
+    question: "What’s included in the $99.99 strategy session?",
     answer: "You’ll get a private 15-minute call with a Digital Era advisor who will go over your business idea, help you structure it, identify tax-saving strategies, and recommend the best subscription package based on your needs. It’s the perfect first step for anyone looking to build a freedom-based online business.",
   },
   {

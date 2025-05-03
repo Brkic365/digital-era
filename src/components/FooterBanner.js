@@ -30,7 +30,7 @@ function FooterBanner() {
         {/* Consultation Offer */}
         <div className={styles.consultationOffer}>
           <p>
-            👉 Start with a 20-Min Consultation — Only $99.99
+            👉 Start with a 15-Min Consultation — Only $99.99
           </p>
         </div>
 

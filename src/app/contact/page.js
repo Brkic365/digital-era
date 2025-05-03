@@ -80,8 +80,6 @@ const ContactPage = () => {
         <motion.div className={styles.sidebar} variants={itemVariant} transition={{ delay: 0.2 }}> {/* Delay sidebar slightly */}
           {/* Animate sidebar blocks */}
           <motion.div variants={itemVariant}>
-            <h4>Chat with Us</h4>
-            <p>Speak to our friendly team via chat.</p>
             <ul>
               <li><HiOutlineMail /> <a href="mailto:info@the-digital-era.com">Shoot us an email</a></li>
             </ul>

@@ -76,69 +76,16 @@ function About() {
                  <p>Today, Shubeg is based in Dubai, managing multiple ventures while traveling the world and working entirely from his laptop. Through Digital Era, he shares the knowledge, systems, and global strategies he’s developed — helping others escape the conventional path and create the same kind of location-independent lifestyle he now enjoys.</p>
                  <p><strong>His mission is to teach aspiring entrepreneurs how to build real businesses, reduce taxes, automate operations, and design a life of freedom.</strong></p>
             </motion.div>
-            <motion.div className={styles.founderImageWrapper} variants={itemVariant}> {/* Image column */}
-                {/* Ensure image exists at this path */}
-                <img src="/images/members/shubeg.jpg" alt="Shubeg Singh, Founder & CEO of Digital Era" className={styles.founderImage} />
+            {
+              /*
+            <motion.div className={styles.founderImageWrapper} variants={itemVariant}>
+                <img src="/images/members/shubeg.jpg" alt="Shubeg Singh, Founder & CEO of Digital Era" className={styles.founderImage} /> 
             </motion.div>
+            */
+            }
          </motion.div>
       </motion.section>
       {/* --- END FOUNDER SECTION --- */}
-
-
-      {/* --- TEAM / NETWORK SECTION --- */}
-      <motion.section
-        className={styles.teamNetworkSection}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }} // Trigger earlier
-        variants={sectionVariant}
-      >
-         {/* Animate Header and Intro */}
-         <motion.div className={styles.teamHeader} variants={itemVariant}>
-             <h2>Meet the Digital Era Team</h2>
-             <p className={styles.teamSubtitle}>World-Class Experts. One Unified Mission.</p>
-         </motion.div>
-        <motion.div className={styles.teamIntroText} variants={itemVariant}>
-          <p>While Shubeg leads the vision, Digital {"Era's"} strength lies in its team — a global network of specialists dedicated to helping clients succeed in today’s fast-moving digital landscape.</p>
-          <p>{"We’ve"} handpicked our team from top-performing professionals across multiple disciplines — not just for their technical skill, but for their integrity, transparency, and results-driven mindset. Each member is committed to ensuring our clients receive not only expert advice but real-world implementation that delivers lasting impact.</p>
-          <p>Our trusted team & partner networks includes:</p>
-        </motion.div>
-
-        {/* Animate Grid with Stagger */}
-        <motion.div
-            className={styles.expertsGrid}
-            variants={gridStagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-        >
-            {/* Wrap each card in motion.div */}
-            <motion.div className={styles.expertCard} variants={itemVariant}>
-                 <div className={styles.expertIconWrapper}><Code2 size={30} /></div>
-                 <h4>Elite Developers</h4>
-                 <p>We work with top-tier developers experienced in building high-performance websites, e-commerce stores, membership platforms, and custom digital systems designed for conversion and scale.</p>
-            </motion.div>
-
-            <motion.div className={styles.expertCard} variants={itemVariant}>
-                 <div className={styles.expertIconWrapper}><Scale size={30} /></div>
-                 <h4>International Business Lawyers</h4>
-                 <p>Our legal partners include some of the most respected professionals in the field — especially in high-leverage jurisdictions like the UAE — providing expert guidance on structuring, compliance, and contracts.</p>
-            </motion.div>
-
-            <motion.div className={styles.expertCard} variants={itemVariant}>
-                 <div className={styles.expertIconWrapper}><BookUser size={30} /></div>
-                 <h4>Accountants & Global Tax Advisors</h4>
-                 <p>We refer you to expert accountants who understand international and local tax law, ensuring {"you're"} set up to operate efficiently and legally pay less tax based on your citizenship and business model.</p>
-            </motion.div>
-
-            <motion.div className={`${styles.expertCard} ${styles.summaryCard}`} variants={itemVariant}>
-                 <div className={styles.expertIconWrapper}><User size={30} /></div>
-                 <h4>Your Success is the Goal</h4>
-                 <p>At every stage, Digital Era connects you to proven, trustworthy professionals — while guiding the entire process to ensure your business is built smarter, faster, and with full transparency.</p>
-            </motion.div>
-        </motion.div>
-      </motion.section>
-      {/* --- END TEAM / NETWORK SECTION --- */}
 
 
       {/* --- PAYMENT GATEWAY & MARKETING/AI SECTION --- */}

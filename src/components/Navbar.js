@@ -32,6 +32,7 @@ export default function Navbar() {
 
       <div className={styles.navLinks}>
         <Link href="/about">About Us</Link>
+        <Link href="/packages">Packages</Link>
         <Link href="/faq">FAQ</Link>
         <Link href="/contact">Contact Us</Link>
       </div>
@@ -50,6 +51,7 @@ export default function Navbar() {
             className={styles.mobileMenu}
           >
             <p onClick={() => handleLinkClick("/about")}>About Us</p>
+            <p onClick={() => handleLinkClick("/packages")}>Packages</p>
             <p onClick={() => handleLinkClick("/faq")}>FAQ</p>
             <p onClick={() => handleLinkClick("/contact")}>Contact Us</p>
           </motion.div>

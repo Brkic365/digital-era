@@ -1,0 +1,101 @@
+// src/styles/pages/Home.module.scss
+
+// --- Variables ---
+$accent-color: #3b82f6;
+$secondary-accent-color: #4f46e5;
+$primary-text: #111827;
+$secondary-text: #4b5563;
+$muted-text: #6b7280;
+$section-bg-light: #f7fafc;
+$section-bg-lighter: #ffffff;
+$card-border: #e2e8f0;
+
+
+.packagesPage {
+    padding: 0; // Main container has no padding
+    // overflow-x: hidden; // This is handled globally now on html/body, but keep if specific issues arise
+    position: relative; // Good practice for containing absolute children if any directly inside
+    width: 100%; // Explicitly set width
+    max-width: 100%; // Prevent exceeding viewport
+
+    // General Section Styling
+    > section {
+        // --- Increased horizontal padding (Approach 1) ---
+        padding: 4rem 1.5rem; // Default vertical and horizontal padding (increased from 1rem)
+        // --- End Change ---
+
+        &:nth-child(even) {
+             background-color: $section-bg-light;
+        }
+        &:nth-child(odd) {
+            background-color: $section-bg-lighter;
+        }
+
+        @media screen and (min-width: 768px) {
+            padding: 5rem 2rem; // Consistent padding increase for tablet
+        }
+        @media screen and (min-width: 1024px) {
+            padding: 6rem 2.5rem; // Consistent padding increase for desktop
+        }
+    }
+
+    .pricingSection {
+        background-color: $section-bg-light; // Keep consistent background
+
+        .packageGrid {
+            width: 100%;
+            max-width: 80rem;
+            margin: 3rem auto 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: stretch;
+
+            @media screen and (min-width: 768px) {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 1.5rem;
+            }
+
+            @media screen and (min-width: 1024px) {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+                align-items: flex-start;
+            }
+
+            :global(.package) {
+                margin: 0 !important;
+                padding: 0 !important;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                h1 { display: none !important; }
+
+                &.featured {
+                    border: 2px solid $accent-color;
+                    box-shadow: 0 10px 35px rgba(59, 130, 246, 0.25);
+                    transform: scale(1.03);
+                    z-index: 10;
+
+                    .featuredBadge {
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background-color: $accent-color;
+                        color: white;
+                        padding: 0.35rem 1rem;
+                        border-radius: 999px;
+                        font-size: 0.75rem;
+                        font-weight: 600;
+                        z-index: 11;
+                        white-space: nowrap;
+                    }
+                }
+
+                 &:not(.featured):hover {
+                     transform: translateY(-5px);
+                     box-shadow: 0 8px 25px rgba(100, 116, 139, 0.15);
+                 }
+            }
+        }
+    }
+}
