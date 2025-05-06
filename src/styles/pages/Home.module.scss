@@ -444,6 +444,120 @@ $border-color: #e5e7eb;
          }
     }
 
+    // --- TEAM / NETWORK SECTION ---
+    .teamNetworkSection {
+        padding: 6rem 1rem; // Consistent padding
+        margin: 0 auto;
+        background-color: $dark-bg !important;
+        color: $light-text;
+        z-index: 2;
+        position: relative;
+
+        .teamHeader {
+            max-width: 70ch;
+            margin: 0 auto 3rem auto;
+            text-align: center;
+
+            h2 {
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
+                font-weight: 700;
+                color: $light-text;
+                margin-bottom: 0.5rem;
+                display: inline-flex; // Keep inline for emoji alignment
+                align-items: center;
+                gap: 0.75rem;
+            }
+            .teamSubtitle {
+                font-size: 1.1rem;
+                font-weight: 500;
+                color: darken($light-text, 15%);
+            }
+        }
+
+        .teamIntroText {
+            max-width: 70ch;
+            margin: 0 auto 4rem auto; // Increased bottom margin
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            color: darken($light-text, 10%);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .expertsGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 80rem;
+            margin: 0 auto;
+
+             @media screen and (min-width: 1024px) {
+                 gap: 2.5rem;
+             }
+        }
+
+        .expertCard {
+            background-color: $dark-bg-card;
+            border: 1px solid $dark-border-color;
+            border-radius: 0.75rem;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.8rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            }
+
+            .expertIconWrapper {
+                background-color: rgba($light-text, 0.08);
+                color: $light-text; // Icon color itself
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 0.5rem;
+            }
+
+            h4 {
+                font-size: 1.15rem; // Adjusted size
+                font-weight: 600;
+                color: $light-text;
+                display: flex; // For emoji alignment
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .cardEmoji {
+                font-size: 1.1em; // Make emoji slightly larger than text
+            }
+
+            p {
+                font-size: 0.95rem;
+                color: darken($light-text, 20%);
+                line-height: 1.7;
+                flex-grow: 1; // Allows card heights to stretch if needed
+
+                strong { color: lighten($primary-cta-bg, 10%); font-weight: 600;}
+            }
+        }
+
+         // Summary Card (Optional distinct style)
+         .summaryCard {
+             background-color: lighten($dark-bg-card, 8%);
+             border-color: lighten($dark-border-color, 10%);
+             h4 { color: lighten($light-text, 5%); }
+             p { color: darken($light-text, 10%); }
+         }
+    }
+
     // --- REVIEWS SECTION ---
     .reviews {
        // Relies on component styles primarily
