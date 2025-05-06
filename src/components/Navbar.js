@@ -25,7 +25,7 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <div className={styles.logoArea} onClick={() => router.push("/")}>
         <div className={styles.logoCircle}>
-          <Image src="/images/logo.png" alt="Logo" width={25} height={25} />
+          <Image src="/images/logo.png" alt="Logo" width={35} height={35} />
         </div>
         <span className={styles.brand}>DIGITAL ERA</span>
       </div>

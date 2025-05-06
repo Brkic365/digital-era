@@ -10,11 +10,25 @@ const defaultAvatarImage = "default-avatar.jpg";
 
 const reviews = [
   {
-    author: "Emily C.",
+    author: "Julio H.",
     img: defaultAvatarImage,
-    about: "Copywriter & Coach",
+    about: "E-commerce Founder",
     review:
-      "Digital Era helped me launch my business, set up an LLC in Dubai, and now I’m literally working from a rooftop café in Lisbon. And I flew here in business class... for free.",
+      "I went from a 9-to-5 to running my own online business, I'm currently enrolled in the premium package which was a no brainer. Weekly 1-on-1 calls with Shubeg gave me a clear roadmap, and I even flew business class for free with the credit card setup they helped me with. Life’s completely different now.",
+  },
+  {
+    author: "Alisha M.",
+    img: defaultAvatarImage,
+    about: "Digital Coach & New Business Owner",
+    review:
+      "What really sets Digital Era apart is how genuine and transparent they are. Unlike other agencies that hit you with hidden fees or overcharge everything, their pricing was very fair and actually way more affordable than I expected. But the real value is how hands-on they are. I got direct support, 1-on-1 guidance, and truly felt like someone was actually walking the path with me.",
+  },
+  {
+    author: "Mohamed H.",
+    img: defaultAvatarImage,
+    about: "Online Business Owner",
+    review:
+      "At first, I just booked a one-time consultation with a Digital Era advisor. They gave me a clear, step-by-step game plan on how to launch my business the right way. I didn’t move forward with a full package right away..big mistake. A few weeks later, my payment processor froze my account and held all my funds. I had no cash flow and no idea what to do. I came back to Digital Era, and they stepped in fast. They helped me set up a more secure system, and now they’re guiding me on how to diversify and increase my revenue.",
   },
   {
     author: "James H.",
@@ -54,7 +68,7 @@ const ReviewCard = ({ review, isActive = false, isGridItem = false }) => (
 
 const ReviewCarouselOrGrid = () => {
   // Determine if carousel mode based on the *actual* number of reviews
-  const isCarousel = reviews.length > 2;
+  const isCarousel = reviews.length > 4;
 
   // --- Embla Hooks and State ---
   const [emblaRef, emblaApi] = useEmblaCarousel({

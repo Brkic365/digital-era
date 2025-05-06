@@ -9,7 +9,7 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.brand}>
           <div className={styles.logoCircle}>
-            <Image src="/images/logo.png" alt="Logo" width={50} height={50} />
+            <Image src="/images/logo.png" alt="Logo" width={60} height={60} />
           </div>
           <div>
             <h2>Digital Era</h2>

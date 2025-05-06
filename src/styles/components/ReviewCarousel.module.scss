@@ -177,9 +177,11 @@
 // }
 
 .reviewGrid {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem; // Spacing between grid items
   grid-template-columns: 1fr; // Stack on smallest screens
+  justify-content: center;
 
   @media screen and (min-width: 640px) { // e.g., sm breakpoint
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Responsive grid
@@ -200,6 +202,11 @@
   padding-left: 1.5rem !important; // Use standard padding, remove carousel spacing adjustment
   flex-basis: auto !important; // Let grid control the size
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07); // Slightly different shadow for grid items? Optional.
+  width: 45%;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 
   &:hover { // Optional: Add hover effect for grid items
     transform: translateY(-5px);

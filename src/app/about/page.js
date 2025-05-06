@@ -7,7 +7,7 @@ import TitleTextCta from '../../components/TitleTextCta'; // Keep for Final CTA
 // Import motion
 import { motion } from 'framer-motion';
 // Import icons
-import { Code2, Scale, BookUser, User, ShieldCheck, BrainCircuit } from 'lucide-react';
+import { Code2, Scale, BookUser, User } from 'lucide-react';
 import { BsCheckCircleFill } from 'react-icons/bs'; // Check icon for lists
 
 // --- Animation Variants (Can reuse from Home or define here) ---
@@ -87,49 +87,61 @@ function About() {
       </motion.section>
       {/* --- END FOUNDER SECTION --- */}
 
-
-      {/* --- PAYMENT GATEWAY & MARKETING/AI SECTION --- */}
+      {/* --- TEAM / NETWORK SECTION --- */}
       <motion.section
-        className={styles.paymentGatewaySection}
+        className={styles.teamNetworkSection}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.1 }} // Trigger earlier
         variants={sectionVariant}
       >
-         {/* Animate the main content block */}
-         <motion.div className={styles.pgContent} variants={itemVariant}>
-             <div className={styles.pgIconLargeWrapper}>
-                  <ShieldCheck size={40} /> {/* Icon for Payment Security */}
-             </div>
-            <h2>Payment Gateway Setup & Strategy</h2>
-            <p className={styles.pgSubtitle}>Protect Your Payments, Keep More Profits</p>
-            <div className={styles.pgTextColumns}>
-                <p>Unlike many agencies that simply suggest Stripe without understanding your business, Digital Era handles your payment gateway setup personally. We don’t take shortcuts or settle for default options because picking the wrong gateway can result in frozen funds or account bans.</p>
-                <p>We ensure your revenue stream is secure and efficient from day one by helping you:</p>
-            </div>
-            {/* Could stagger list items here too */}
-            <ul className={styles.pgChecklist}>
-                <li><BsCheckCircleFill /><span>Choose the <strong>best & safest</strong> gateway for your business model and region.</span></li>
-                <li><BsCheckCircleFill /><span>Avoid risky platforms prone to freezing or holding your funds.</span></li>
-                <li><BsCheckCircleFill /><span>Implement strategies to minimize transaction fees and maximize payout speed.</span></li>
-            </ul>
-            <p className={styles.pgEmphasisText}>Other agencies often overlook the risks and transparency issues with payment gateways. We make sure it’s done right, securing your revenue and streamlining your payments from day one.</p>
+         {/* Animate Header and Intro */}
+         <motion.div className={styles.teamHeader} variants={itemVariant}>
+             <h2>Meet the Digital Era Team</h2>
+             <p className={styles.teamSubtitle}>World-Class Experts. One Unified Mission.</p>
+         </motion.div>
+        <motion.div className={styles.teamIntroText} variants={itemVariant}>
+          <p>While Shubeg leads the vision, Digital {"Era's"} strength lies in its team — a global network of specialists dedicated to helping clients succeed in today’s fast-moving digital landscape.</p>
+          <p>{"We’ve"} handpicked our team from top-performing professionals across multiple disciplines — not just for their technical skill, but for their integrity, transparency, and results-driven mindset. Each member is committed to ensuring our clients receive not only expert advice but real-world implementation that delivers lasting impact.</p>
+          <p>Our trusted team & partner networks includes:</p>
+        </motion.div>
 
-            {/* Animate the Marketing/AI subsection */}
-            <motion.div className={styles.marketingAiContent} variants={itemVariant}>
-                 <div className={styles.subSectionHeader}>
-                     <BrainCircuit size={24} /> {/* Icon for Marketing/AI */}
-                    <h3>Marketing & AI Automation Experts</h3>
-                 </div>
-                 <p>From funnel building and lead generation to AI-powered systems and automation workflows, our marketing and tech partners help you build scalable growth strategies that align with your business goals.</p>
+        {/* Animate Grid with Stagger */}
+        <motion.div
+            className={styles.expertsGrid}
+            variants={gridStagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+        >
+            {/* Wrap each card in motion.div */}
+            <motion.div className={styles.expertCard} variants={itemVariant}>
+                 <div className={styles.expertIconWrapper}><Code2 size={30} /></div>
+                 <h4>Elite Developers</h4>
+                 <p>We work with top-tier developers experienced in building high-performance websites, e-commerce stores, membership platforms, and custom digital systems designed for conversion and scale.</p>
             </motion.div>
 
-            <motion.p className={styles.pgFinalText} variants={itemVariant}>At every stage, Digital Era connects you to proven, trustworthy professionals — while guiding the entire process to ensure your business is built smarter, faster, and with full transparency.</motion.p>
-         </motion.div>
+            <motion.div className={styles.expertCard} variants={itemVariant}>
+                 <div className={styles.expertIconWrapper}><Scale size={30} /></div>
+                 <h4>International Business Lawyers</h4>
+                 <p>Our legal partners include some of the most respected professionals in the field — especially in high-leverage jurisdictions like the UAE — providing expert guidance on structuring, compliance, and contracts.</p>
+            </motion.div>
+
+            <motion.div className={styles.expertCard} variants={itemVariant}>
+                 <div className={styles.expertIconWrapper}><BookUser size={30} /></div>
+                 <h4>Accountants & Global Tax Advisors</h4>
+                 <p>We refer you to expert accountants who understand international and local tax law, ensuring {"you're"} set up to operate efficiently and legally pay less tax based on your citizenship and business model.</p>
+            </motion.div>
+
+            <motion.div className={`${styles.expertCard} ${styles.summaryCard}`} variants={itemVariant}>
+                 <div className={styles.expertIconWrapper}><User size={30} /></div>
+                 <h4>Your Success is the Goal</h4>
+                 <p>At every stage, Digital Era connects you to proven, trustworthy professionals — while guiding the entire process to ensure your business is built smarter, faster, and with full transparency.</p>
+            </motion.div>
+        </motion.div>
       </motion.section>
-      {/* --- END PAYMENT GATEWAY & MARKETING/AI SECTION --- */}
-
-
+      {/* --- END TEAM / NETWORK SECTION --- */}
+      
       {/* --- FINAL CTA --- */}
       {/* Animate the final CTA section */}
       <motion.div

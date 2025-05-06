@@ -10,7 +10,7 @@ import FooterBanner from "../components/FooterBanner";
 import { motion } from "framer-motion"; // Import motion
 import {
   Code2, BookUser, User, Scale, Building2, CreditCard, Sparkles,
-  Network, Plane, Bot, Target
+  Network, Plane, Bot, Target, ShieldCheck, BrainCircuit
 } from 'lucide-react';
 import { BsCheckCircleFill } from 'react-icons/bs';
 
@@ -164,7 +164,7 @@ export default function Home() {
              <p className={styles.teamSubtitle}>World-Class Experts. One Unified Mission.</p>
          </motion.div>
         <motion.div className={styles.teamIntroText} variants={itemVariant}>
-          <p>While Shubeg leads the vision, Digital {"Era's"} strength lies in its team — a global network of specialists dedicated to helping clients succeed in today’s fast-moving digital landscape.</p>
+          <p>Digital {"Era's"} strength lies in its team — a global network of specialists dedicated to helping clients succeed in today’s fast-moving digital landscape.</p>
           <p>{"We’ve"} handpicked our team from top-performing professionals across multiple disciplines — not just for their technical skill, but for their integrity, transparency, and results-driven mindset. Each member is committed to ensuring our clients receive not only expert advice but real-world implementation that delivers lasting impact.</p>
           <p>Our trusted team & partner networks includes:</p>
         </motion.div>
@@ -204,6 +204,47 @@ export default function Home() {
         </motion.div>
       </motion.section>
       {/* --- END TEAM / NETWORK SECTION --- */}
+
+      {/* --- PAYMENT GATEWAY & MARKETING/AI SECTION --- */}
+      <motion.section
+        className={styles.paymentGatewaySection}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariant}
+      >
+         {/* Animate the main content block */}
+         <motion.div className={styles.pgContent} variants={itemVariant}>
+             <div className={styles.pgIconLargeWrapper}>
+                  <ShieldCheck size={40} /> {/* Icon for Payment Security */}
+             </div>
+            <h2>Payment Gateway Setup & Strategy</h2>
+            <p className={styles.pgSubtitle}>Protect Your Payments, Keep More Profits</p>
+            <div className={styles.pgTextColumns}>
+                <p>Unlike many agencies that simply suggest Stripe without understanding your business, Digital Era handles your payment gateway setup personally. We don’t take shortcuts or settle for default options because picking the wrong gateway can result in frozen funds or account bans.</p>
+                <p>We ensure your revenue stream is secure and efficient from day one by helping you:</p>
+            </div>
+            {/* Could stagger list items here too */}
+            <ul className={styles.pgChecklist}>
+                <li><BsCheckCircleFill /><span>Choose the <strong>best & safest</strong> gateway for your business model and region.</span></li>
+                <li><BsCheckCircleFill /><span>Avoid risky platforms prone to freezing or holding your funds.</span></li>
+                <li><BsCheckCircleFill /><span>Implement strategies to minimize transaction fees and maximize payout speed.</span></li>
+            </ul>
+            <p className={styles.pgEmphasisText}>Other agencies often overlook the risks and transparency issues with payment gateways. We make sure it’s done right, securing your revenue and streamlining your payments from day one.</p>
+
+            {/* Animate the Marketing/AI subsection */}
+            <motion.div className={styles.marketingAiContent} variants={itemVariant}>
+                 <div className={styles.subSectionHeader}>
+                     <BrainCircuit size={24} /> {/* Icon for Marketing/AI */}
+                    <h3>Marketing & AI Automation Experts</h3>
+                 </div>
+                 <p>From funnel building and lead generation to AI-powered systems and automation workflows, our marketing and tech partners help you build scalable growth strategies that align with your business goals.</p>
+            </motion.div>
+
+            <motion.p className={styles.pgFinalText} variants={itemVariant}>At every stage, Digital Era connects you to proven, trustworthy professionals — while guiding the entire process to ensure your business is built smarter, faster, and with full transparency.</motion.p>
+         </motion.div>
+      </motion.section>
+      {/* --- END PAYMENT GATEWAY & MARKETING/AI SECTION --- */}
 
       {/* REVIEWS SECTION */}
       <motion.section
