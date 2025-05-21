@@ -5,6 +5,7 @@ import styles from "../../styles/pages/Contact.module.scss";
 import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi"; // Removed HiOutlineChatAlt2 as it wasn't used
 import { FaXTwitter } from "react-icons/fa6";
 import { motion } from "framer-motion"; // Import motion
+import FooterBanner from "../../components/FooterBanner";
 
 // --- Animation Variants (Can reuse from Home/FAQ or define here) ---
 const sectionVariant = {
@@ -86,6 +87,7 @@ const ContactPage = () => {
           </motion.div>
         </motion.div>
       </motion.div>
+      <FooterBanner />
     </motion.section>
   );
 };

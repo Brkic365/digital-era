@@ -47,7 +47,7 @@ $accent-color: #3b82f6; // Or your theme's accent
             position: absolute;
             width: 80px; // Fixed width or percentage
             height: 4px; // Thicker underline
-            background: $accent-color; // Use accent color
+            background: #BB9B4E; // Use accent color
             bottom: -0.75rem; // Position below text
             left: 50%;
             transform: translateX(-50%);
@@ -72,6 +72,7 @@ $accent-color: #3b82f6; // Or your theme's accent
       gap: 1rem; // Gap between cards
       z-index: 2;
       position: relative;
+      margin-bottom: 4rem;
 
        @media screen and (min-width: 768px) { // Apply 2 columns on tablet+
            grid-template-columns: 1fr 1fr; // Two equal columns

@@ -2,28 +2,23 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background-color: #E8F1FA;
+    background-color: rgba(187, 154, 78, 0.2);
     padding: 0.3rem 0.6rem;
     border-radius: 2rem;
+    width: fit-content;
+    justify-content: center;
 
     .icon {
         width: 1.5rem;
         height: 1.5rem;
-        background-color: #516681;
+        background-color: white;
         border-radius: 50%;
         position: relative;
-
-        svg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
     }
 
     .crumbText {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: #516681;
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
+        color: rgba(187, 154, 78, 1) !important;
     }
 }

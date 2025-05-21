@@ -47,6 +47,10 @@ $border-color: #e5e7eb;
         }
     }
 
+    .heroSection {
+        padding-top: 0;
+    }
+
     // --- STRATEGY CALL SECTION STYLES ---
     .strategyCallSection {
         background-color: $section-bg-lighter; // Keep background consistent
@@ -250,7 +254,7 @@ $border-color: #e5e7eb;
                  align-self: flex-start; // Align button left within the box
                  margin-top: 1.5rem;
                  display: inline-block;
-                 background-color: $secondary-accent-color;
+                 background-color: #BB9B4E;
                  color: white;
                  padding: 0.8rem 1.8rem;
                  border-radius: 999px;
@@ -260,7 +264,7 @@ $border-color: #e5e7eb;
                  cursor: pointer;
                  transition: background-color 0.2s ease, transform 0.1s ease;
 
-                 &:hover { background-color: darken($secondary-accent-color, 10%); }
+                 &:hover { background-color: darken(#BB9B4E, 10%); }
                  &:active { transform: scale(0.98); }
             }
         }

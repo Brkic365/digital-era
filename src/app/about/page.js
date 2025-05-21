@@ -9,6 +9,8 @@ import { motion } from 'framer-motion';
 // Import icons
 import { Code2, Scale, BookUser, User } from 'lucide-react';
 import { BsCheckCircleFill } from 'react-icons/bs'; // Check icon for lists
+import FooterBanner from '../../components/FooterBanner';
+import SubtitleCrumb from '../../components/SubtitleCrumb';
 
 // --- Animation Variants (Can reuse from Home or define here) ---
 const sectionVariant = {
@@ -47,7 +49,7 @@ function About() {
         variants={sectionVariant}
       >
         <div className={styles.heroContent}>
-          <motion.span variants={itemVariant} className={styles.heroCrumb}>About Us</motion.span>
+          <SubtitleCrumb text="About Us" />
           <motion.h1 variants={itemVariant}>Empowering the Next Generation of Entrepreneurs</motion.h1>
           <motion.p variants={itemVariant}>Digital Era provides the strategies, network, and systems for building location-independent businesses that generate real freedom.</motion.p>
         </div>
@@ -164,6 +166,7 @@ function About() {
         />
       </motion.div>
       {/* --- END FINAL CTA --- */}
+      <FooterBanner />
     </main>
   )
 }

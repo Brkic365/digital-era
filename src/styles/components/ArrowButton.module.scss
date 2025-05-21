@@ -7,20 +7,19 @@
     border-radius: 2rem;
 
     border: 1px solid;
-    border-color: #516681;
     outline: none;
-    background-color: white;
+    background-color: rgba(187, 154, 78, 0.8);
 
     transition: all 0.2s ease-in-out;
 
     cursor: pointer;
     
-    color: #516681;
+    color: white;
     
     .btnText {
         font-weight: 600;
         font-size: 0.9rem;
-        color: inherit;
+        color: white !important;
     }
 
     svg {
@@ -29,7 +28,7 @@
     }
 
     &:hover {
-        background-color: #516681;
+        background-color: #BB9B4E;
         color: white;
 
         .btnText {

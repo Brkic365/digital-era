@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styles from "../../styles/pages/Faq.module.scss";
 import { HiOutlineChevronDown } from "react-icons/hi"; // Removed HiOutlineChevronUp as rotation handles it
 import { motion, AnimatePresence } from "framer-motion";
+import FooterBanner from "../../components/FooterBanner";
 
 // --- Animation Variants (Can reuse from Home or define here) ---
 const sectionVariant = { // For the overall section or header
@@ -172,6 +173,7 @@ const FaqPage = () => {
           </motion.div>
         ))}
       </motion.div>
+      <FooterBanner />
     </motion.section>
   );
 };

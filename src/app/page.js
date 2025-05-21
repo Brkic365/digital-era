@@ -64,6 +64,7 @@ export default function Home() {
          animate="visible" // Animate immediately on load
          variants={sectionVariant}
          // No viewport needed for initial load animation
+         className={styles.heroSection}
       >
         <Hero
             title="Welcome to Digital Era"
@@ -224,13 +225,19 @@ export default function Home() {
                 <p>Unlike many agencies that simply suggest Stripe without understanding your business, Digital Era handles your payment gateway setup personally. We don’t take shortcuts or settle for default options because picking the wrong gateway can result in frozen funds or account bans.</p>
                 <p>We ensure your revenue stream is secure and efficient from day one by helping you:</p>
             </div>
+            <div className={styles.pgTextColumns}>
+                <p>What We Do:</p>
+            </div>
             {/* Could stagger list items here too */}
             <ul className={styles.pgChecklist}>
-                <li><BsCheckCircleFill /><span>Choose the <strong>best & safest</strong> gateway for your business model and region.</span></li>
-                <li><BsCheckCircleFill /><span>Avoid risky platforms prone to freezing or holding your funds.</span></li>
-                <li><BsCheckCircleFill /><span>Implement strategies to minimize transaction fees and maximize payout speed.</span></li>
+                <li><BsCheckCircleFill /><span>Match you with the right gateway based on your business model, location, and risk level</span></li>
+                <li><BsCheckCircleFill /><span>Avoid risky platforms known for freezing or holding funds</span></li>
+                <li><BsCheckCircleFill /><span>Minimize transaction fees and speed up payouts through smart gateway strategies</span></li>
+                <li><BsCheckCircleFill /><span>Reduce chargebacks with proven tools, best practices, and dispute defense workflows</span></li>
+                <li><BsCheckCircleFill /><span>Provide ongoing tools & support to monitor payment health and protect your accounts</span></li>
+                <li><BsCheckCircleFill /><span>Ensure long-term compliance and scalability for high-growth businesses</span></li>
             </ul>
-            <p className={styles.pgEmphasisText}>Other agencies often overlook the risks and transparency issues with payment gateways. We make sure it’s done right, securing your revenue and streamlining your payments from day one.</p>
+            <p className={styles.pgEmphasisText}>While other agencies overlook payment risks, we treat your gateway like your {"business's"} financial backbone - optimized, secure, and built to scale.</p>
 
             {/* Animate the Marketing/AI subsection */}
             <motion.div className={styles.marketingAiContent} variants={itemVariant}>

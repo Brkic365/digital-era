@@ -22,6 +22,9 @@ $check-color: #10b981; // Color for checkmarks
         background-color: $light-bg; // Example background
         padding: 6rem 1.5rem 4rem 1.5rem; // Adjust padding
         text-align: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
 
         @media screen and (min-width: 768px) {
              padding: 8rem 2rem 6rem 2rem;
@@ -30,17 +33,9 @@ $check-color: #10b981; // Color for checkmarks
         .heroContent {
             max-width: 70ch; // Limit text width
             margin: 0 auto;
-        }
-
-        .heroCrumb {
-            display: inline-block;
-            background-color: rgba($accent-color, 0.1);
-            color: $accent-color;
-            padding: 0.3rem 0.8rem;
-            border-radius: 99px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
         }
 
         h1 {

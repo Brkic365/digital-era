@@ -3,6 +3,7 @@
 import React from "react";
 import styles from "../../styles/pages/Terms.module.scss";
 import { motion } from "framer-motion"; // Import motion
+import FooterBanner from "../../components/FooterBanner";
 
 // --- Animation Variants (Can reuse from Home/FAQ or define here) ---
 const sectionVariant = {
@@ -103,13 +104,13 @@ const TermsPage = () => {
         If you have any questions or concerns about these Terms of Service, please contact us at:
       </motion.p>
       <motion.p variants={itemVariant}>Email:  info@the-digital-era.com</motion.p>
-      <motion.p variants={itemVariant}>Phone: [Insert Phone Number]</motion.p>
 
       <motion.p variants={itemVariant} className={styles.notice}>
         <strong>
           By using our website and services, you acknowledge that you have read and agree to these Terms of Service.
         </strong>
       </motion.p>
+      <FooterBanner />
     </motion.section>
   );
 };

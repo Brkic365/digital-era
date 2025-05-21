@@ -17,7 +17,7 @@ function Hero({ title, subtitle, cta}) {
         </div>
         <div className={styles.graphic}>
         <DotLottieReact
-          src="https://lottie.host/f0be8ed1-1ef5-4264-9e75-3ab854870028/jCKZiqODhj.lottie"
+          src="https://lottie.host/6006c178-b955-4c7a-945a-0de20d1e974e/Rbc9x1Fs8b.lottie"
           loop
           autoplay
         />
