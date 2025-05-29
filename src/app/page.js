@@ -1,18 +1,23 @@
+// src/app/page.js
 "use client"
 
+import React, { useState } from "react"; // Import useState
 import Image from "next/image";
 import styles from "../styles/pages/Home.module.scss";
 import Hero from "../components/Hero";
-import Link from "next/link";
+// Link might still be used for other non-payment navigation
+// import Link from "next/link";
 import TitleTextCta from "../components/TitleTextCta";
 import ReviewCarouselOrGrid from "../components/ReviewCarousel";
-import FooterBanner from "../components/FooterBanner";
-import { motion } from "framer-motion"; // Import motion
+import FooterBanner from "../components/FooterBanner"; // Ensure this is updated for Stripe
+import { motion } from "framer-motion";
 import {
   Code2, BookUser, User, Scale, Building2, CreditCard, Sparkles,
   Network, Plane, Bot, Target, ShieldCheck, BrainCircuit
 } from 'lucide-react';
 import { BsCheckCircleFill } from 'react-icons/bs';
+import getStripe from "../lib/getStripe"; // Import Stripe utility
+import { useRouter } from "next/navigation";
 
 // --- Animation Variants ---
 const sectionVariant = {
@@ -23,22 +28,20 @@ const sectionVariant = {
     transition: {
       duration: 0.6,
       ease: "easeOut",
-      // type: "spring", // Optional: use spring physics
-      // stiffness: 100,
     },
   },
 };
 
 const itemVariant = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
 const listStagger = {
-    hidden: {}, // No specific hidden state needed for container
+    hidden: {},
     visible: {
         transition: {
-            staggerChildren: 0.15, // Delay between list items
+            staggerChildren: 0.15,
         }
     }
 };
@@ -47,23 +50,69 @@ const gridStagger = {
   hidden: {},
   visible: {
       transition: {
-          staggerChildren: 0.15, // Stagger delay for grid items
+          staggerChildren: 0.15,
       }
   }
 };
 
+// --- !!! IMPORTANT: REPLACE WITH YOUR ACTUAL STRIPE PRICE ID !!! ---
+const STRATEGY_SESSION_PRICE_ID = 'price_1RRtm539gvg6me8b5ugm09WI'; // Example: price_1LqWq12eZvKYlo2CAk9q1xV0
 
 export default function Home() {
+  const router = useRouter();
+  const [loadingStrategySession, setLoadingStrategySession] = useState(false);
+
+  const handleStrategySessionCheckout = async () => {
+    if (!STRATEGY_SESSION_PRICE_ID || STRATEGY_SESSION_PRICE_ID.includes('YOUR_') ) {
+        alert("Strategy session payment is not configured. Please contact support.");
+        console.error("Stripe Price ID for strategy session is not set or is a placeholder.");
+        return;
+    }
+
+    setLoadingStrategySession(true);
+    try {
+      const response = await fetch('/api/checkout_sessions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ priceId: STRATEGY_SESSION_PRICE_ID, mode: 'payment' }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to create checkout session.');
+      }
+
+      const { sessionId } = await response.json();
+      const stripe = await getStripe();
+
+      if (!stripe) {
+        throw new Error("Stripe.js failed to load. Please check your internet connection or contact support.");
+      }
+
+      const { error } = await stripe.redirectToCheckout({ sessionId });
+
+      if (error) {
+        // This error is shown by Stripe's UI, but good to log it.
+        console.error('Stripe redirectToCheckout error:', error.message);
+        // Potentially show a user-friendly message here if Stripe's UI doesn't or if needed.
+        // alert(`Error redirecting to payment: ${error.message}`);
+      }
+    } catch (error) {
+      console.error('Strategy session checkout error:', error);
+      alert(`Error: ${error.message || 'Could not process payment. Please try again.'}`);
+    } finally {
+      setLoadingStrategySession(false);
+    }
+  };
+
+
   return (
-    // No animation needed on the main container itself usually
     <main className={styles.home}>
       {/* HERO SECTION */}
-      {/* Hero component likely has its own internal animations, but we wrap it just in case */}
       <motion.section
          initial="hidden"
-         animate="visible" // Animate immediately on load
+         animate="visible"
          variants={sectionVariant}
-         // No viewport needed for initial load animation
          className={styles.heroSection}
       >
         <Hero
@@ -71,31 +120,27 @@ export default function Home() {
             subtitle="Build Your Online Business. Travel the World. Work from Anywhere. Become a Digital-Nomad. We help you turn ideas into income-generating online businesses you can run globally."
             cta={{
             text: "Get Started",
-            href: "/contact"
+            href: "/contact" // This can remain a link to contact page, or change to a direct pay if desired
             }}
         />
       </motion.section>
-
-      {/* SERVICES SECTION - COMMENTED OUT */}
-      {/* ... */}
-
 
       {/* STRATEGY CALL / VALUE PROPOSITION SECTION */}
       <motion.section
         className={styles.strategyCallSection}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }} // Trigger when 20% is in view, once
+        viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariant}
       >
         <div className={styles.contentWrapper}>
             {/* Left Column Content */}
-            <motion.div className={styles.strategyLeftCol} variants={listStagger}> {/* Apply stagger to column */}
+            <motion.div className={styles.strategyLeftCol} variants={listStagger}>
                  <motion.p variants={itemVariant} className={styles.introEmphasis}>
                     At Digital Era, we help you create the life most people only dream about — by turning your ideas and skills into a powerful, income-generating online business you can run from anywhere in the world.
                 </motion.p>
                 <motion.p variants={itemVariant} className={styles.subtleEmphasis}>But we {"don’t"} stop at business setup. We provide a full ecosystem designed for your success:</motion.p>
-                  <motion.ul className={styles.iconList} variants={listStagger}> {/* Stagger list items */}
+                  <motion.ul className={styles.iconList} variants={listStagger}>
                       <motion.li variants={itemVariant}><Scale className={styles.icon} /><span>Legal strategies to reduce or eliminate your taxes</span></motion.li>
                       <motion.li variants={itemVariant}><Building2 className={styles.icon} /><span>Company formation in high-leverage jurisdictions like the UAE</span></motion.li>
                       <motion.li variants={itemVariant}><CreditCard className={styles.icon} /><span>Seamless payment gateway setup, even for high-risk industries</span></motion.li>
@@ -111,18 +156,17 @@ export default function Home() {
             </motion.div>
 
             {/* Right Column Content (The Offer Box) */}
-            <motion.div className={styles.strategyRightCol} variants={itemVariant}> {/* Animate the box as one item */}
+            <motion.div className={styles.strategyRightCol} variants={itemVariant}>
                 <div className={styles.callOfferBox}>
                     <h2><span role="img" aria-label="Chat bubble">💬</span> Start With a Personalized Strategy Session</h2>
                     <p className={styles.priceHighlight}>
                     Only $99.99 for 15 Minutes That Could Change Everything
                     </p>
                     <p>
-                    Not sure where to begin? Not sure what <Link href="/packages">package</Link> is best for you? Have a big idea but not sure how to launch it? Let’s talk.
+                    Not sure where to begin? Not sure what <a href="/packages" style={{textDecoration: 'underline', color: '#BB9B4E'}}>package</a> is best for you? Have a big idea but not sure how to launch it? Let’s talk.
                     For just $99.99, you’ll get a 15-minute private strategy session with a Digital Era advisor — designed to give you absolute clarity and direction on your next step.
                     </p>
                     <h3>What You’ll Get in Your Call:</h3>
-                    {/* You could stagger these list items too if desired */}
                     <ul className={styles.checkList}>
                       <li><BsCheckCircleFill className={styles.checkIcon} /><span>A clear understanding of how we can help you bring your business idea to life</span></li>
                       <li><BsCheckCircleFill className={styles.checkIcon} /><span>Expert insight into how to structure your company based on your location, goals, and citizenship</span></li>
@@ -135,16 +179,25 @@ export default function Home() {
                       <span role="img" aria-label="Light bulb">💡</span> Think of it as a mini-roadmap session...
                     </p>
                     <h3><span role="img" aria-label="Rocket">🚀</span> Who This Call Is Perfect For:</h3>
-                    {/* You could stagger these list items too */}
                     <ul className={styles.targetList}>
                       <li><Target className={styles.targetIcon} /><span>You have an idea, side hustle, or skill but {"don’t"} know how to turn it into a business</span></li>
                       <li><Target className={styles.targetIcon} /><span>{"You’re"} overwhelmed with options — LLCs, offshore, taxes, websites, AI — and need clarity</span></li>
                       <li><Target className={styles.targetIcon} /><span>You want expert eyes on your vision and how to scale it from day one</span></li>
                       <li><Target className={styles.targetIcon} /><span>{"You’re"} ready to invest in yourself and your freedom, but want to make the right move</span></li>
                     </ul>
-                    <Link href="/contact" passHref>
-                       <button className={styles.ctaButton}>Book Your $99.99 Strategy Session</button>
-                     </Link>
+                    {/* Updated Button for Stripe Checkout */}
+                     <button
+                          //onClick={handleStrategySessionCheckout}
+                          onClick={() => router.push("/contact")}
+                        className={styles.ctaButton} // Use your existing button styles
+                        disabled={loadingStrategySession}
+                        style={{
+                            opacity: loadingStrategySession ? 0.7 : 1,
+                            cursor: loadingStrategySession ? 'not-allowed' : 'pointer',
+                        }}
+                      >
+                        {loadingStrategySession ? "Processing..." : "Book Your $99.99 Strategy Session"}
+                      </button>
                 </div>
             </motion.div>
         </div>
@@ -156,10 +209,9 @@ export default function Home() {
         className={styles.teamNetworkSection}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }} // Trigger earlier
+        viewport={{ once: true, amount: 0.1 }}
         variants={sectionVariant}
       >
-         {/* Animate Header and Intro */}
          <motion.div className={styles.teamHeader} variants={itemVariant}>
              <h2>Meet the Digital Era Team</h2>
              <p className={styles.teamSubtitle}>World-Class Experts. One Unified Mission.</p>
@@ -169,8 +221,6 @@ export default function Home() {
           <p>{"We’ve"} handpicked our team from top-performing professionals across multiple disciplines — not just for their technical skill, but for their integrity, transparency, and results-driven mindset. Each member is committed to ensuring our clients receive not only expert advice but real-world implementation that delivers lasting impact.</p>
           <p>Our trusted team & partner networks includes:</p>
         </motion.div>
-
-        {/* Animate Grid with Stagger */}
         <motion.div
             className={styles.expertsGrid}
             variants={gridStagger}
@@ -178,25 +228,21 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
         >
-            {/* Wrap each card in motion.div */}
             <motion.div className={styles.expertCard} variants={itemVariant}>
                  <div className={styles.expertIconWrapper}><Code2 size={30} /></div>
                  <h4>Elite Developers</h4>
                  <p>We work with top-tier developers experienced in building high-performance websites, e-commerce stores, membership platforms, and custom digital systems designed for conversion and scale.</p>
             </motion.div>
-
             <motion.div className={styles.expertCard} variants={itemVariant}>
                  <div className={styles.expertIconWrapper}><Scale size={30} /></div>
                  <h4>International Business Lawyers</h4>
                  <p>Our legal partners include some of the most respected professionals in the field — especially in high-leverage jurisdictions like the UAE — providing expert guidance on structuring, compliance, and contracts.</p>
             </motion.div>
-
             <motion.div className={styles.expertCard} variants={itemVariant}>
                  <div className={styles.expertIconWrapper}><BookUser size={30} /></div>
                  <h4>Accountants & Global Tax Advisors</h4>
                  <p>We refer you to expert accountants who understand international and local tax law, ensuring {"you're"} set up to operate efficiently and legally pay less tax based on your citizenship and business model.</p>
             </motion.div>
-
             <motion.div className={`${styles.expertCard} ${styles.summaryCard}`} variants={itemVariant}>
                  <div className={styles.expertIconWrapper}><User size={30} /></div>
                  <h4>Your Success is the Goal</h4>
@@ -214,10 +260,9 @@ export default function Home() {
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariant}
       >
-         {/* Animate the main content block */}
          <motion.div className={styles.pgContent} variants={itemVariant}>
              <div className={styles.pgIconLargeWrapper}>
-                  <ShieldCheck size={40} /> {/* Icon for Payment Security */}
+                  <ShieldCheck size={40} />
              </div>
             <h2>Payment Gateway Setup & Strategy</h2>
             <p className={styles.pgSubtitle}>Protect Your Payments, Keep More Profits</p>
@@ -225,10 +270,7 @@ export default function Home() {
                 <p>Unlike many agencies that simply suggest Stripe without understanding your business, Digital Era handles your payment gateway setup personally. We don’t take shortcuts or settle for default options because picking the wrong gateway can result in frozen funds or account bans.</p>
                 <p>We ensure your revenue stream is secure and efficient from day one by helping you:</p>
             </div>
-            <div className={styles.pgTextColumns}>
-                <p>What We Do:</p>
-            </div>
-            {/* Could stagger list items here too */}
+            <div className={styles.pgTextColumns}><p>What We Do:</p></div>
             <ul className={styles.pgChecklist}>
                 <li><BsCheckCircleFill /><span>Match you with the right gateway based on your business model, location, and risk level</span></li>
                 <li><BsCheckCircleFill /><span>Avoid risky platforms known for freezing or holding funds</span></li>
@@ -238,16 +280,13 @@ export default function Home() {
                 <li><BsCheckCircleFill /><span>Ensure long-term compliance and scalability for high-growth businesses</span></li>
             </ul>
             <p className={styles.pgEmphasisText}>While other agencies overlook payment risks, we treat your gateway like your {"business's"} financial backbone - optimized, secure, and built to scale.</p>
-
-            {/* Animate the Marketing/AI subsection */}
             <motion.div className={styles.marketingAiContent} variants={itemVariant}>
                  <div className={styles.subSectionHeader}>
-                     <BrainCircuit size={24} /> {/* Icon for Marketing/AI */}
+                     <BrainCircuit size={24} />
                     <h3>Marketing & AI Automation Experts</h3>
                  </div>
                  <p>From funnel building and lead generation to AI-powered systems and automation workflows, our marketing and tech partners help you build scalable growth strategies that align with your business goals.</p>
             </motion.div>
-
             <motion.p className={styles.pgFinalText} variants={itemVariant}>At every stage, Digital Era connects you to proven, trustworthy professionals — while guiding the entire process to ensure your business is built smarter, faster, and with full transparency.</motion.p>
          </motion.div>
       </motion.section>
@@ -259,10 +298,9 @@ export default function Home() {
         className={styles.reviews}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }} // Trigger earlier
+        viewport={{ once: true, amount: 0.1 }}
         variants={sectionVariant}
       >
-        {/* You might animate TitleTextCta separately if desired */}
         <TitleTextCta
             title="What Our Clients Say"
             subtitle={null}
@@ -270,7 +308,6 @@ export default function Home() {
             align="center"
             crumbText="Testimonials"
           />
-        {/* Animate the carousel/grid container */}
         <motion.div variants={itemVariant}>
            <ReviewCarouselOrGrid />
         </motion.div>
@@ -278,13 +315,13 @@ export default function Home() {
 
       {/* Footer Banner Section */}
       <motion.section
-        className={styles.footerBannerSection} // Added a specific class if needed for targeting
+        className={styles.footerBannerSection}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariant}
        >
-        <FooterBanner />
+        <FooterBanner /> {/* FooterBanner should have its own Stripe logic if it has a direct pay button */}
       </motion.section>
     </main>
   );
