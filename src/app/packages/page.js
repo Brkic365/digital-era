@@ -112,7 +112,7 @@ export default function PackagesPage() {
                listTitle="Includes:"
                isFeatured={true}
                checks={[
-                  "Monthly Call With CEO (30 min)",
+                  "Monthly Strategy Call with CE0 (30 min)",
                   "Legal & Structure Support",
                   "Website & Branding",
                   "Tools & Templates",
@@ -126,6 +126,7 @@ export default function PackagesPage() {
                   "Payment Gateway Setup"
                 ]}
                minuses={[
+                  "Weekly Strategy Call with CEO",
                   "Concierge Services",
                   "Custom Marketing/Ads",
                   "Platform Builds (e-com/course)",
@@ -144,7 +145,7 @@ export default function PackagesPage() {
                about="For advanced entrepreneurs scaling into global brands or digital empires."
                listTitle="Includes:"
                checks={[
-                  "Weekly Call With CEO",
+                  "Weekly Strategy Call with CEO (30 min)",
                   "Legal & Structure Support",
                   "Website & Branding",
                   "Tools & Templates",

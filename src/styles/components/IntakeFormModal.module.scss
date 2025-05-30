@@ -1,0 +1,251 @@
+// src/styles/components/IntakeFormModal.module.scss
+
+// Variables (consider importing from a global file)
+$modal-overlay-bg: rgba(0, 0, 0, 0.6);
+$modal-bg: #ffffff;
+$primary-text: #111827;
+$secondary-text: #4b5563;
+$border-color: #d1d5db; // Softer border
+$accent-color: #3b82f6; // Your theme's accent
+$error-color: #ef4444; // Red for errors
+$success-color: #10b981; // Green for success
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: $modal-overlay-bg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; // Ensure it's above other content
+  padding: 1rem; // Padding for smaller screens
+}
+
+.modalContent {
+  background-color: $modal-bg;
+  padding: 2rem 1.5rem; // Default padding
+  border-radius: 0.75rem;
+  max-width: 650px; // Max width of the modal
+  width: 100%;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh; // Limit height
+  overflow-y: auto; // Allow scrolling if content is long
+
+  @media screen and (min-width: 768px) {
+    padding: 2.5rem;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem; // Make close icon larger
+  color: $secondary-text;
+  cursor: pointer;
+  padding: 0.25rem; // Clickable area
+  line-height: 1;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $primary-text;
+  }
+}
+
+.modalHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $primary-text;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    span[role="img"] { font-size: 1.2em; } // Make emoji slightly larger
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: $secondary-text;
+    line-height: 1.6;
+  }
+
+  .selectedPackageInfo {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: $accent-color;
+    background-color: rgba($accent-color, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+    strong { font-weight: 600; }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; // Space between form groups
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem; // Space between label and input
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 500; // Medium weight for labels
+    color: $primary-text;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 0.75rem 1rem; // Consistent padding
+    border: 1px solid $border-color;
+    border-radius: 0.5rem; // Softer radius
+    font-size: 1rem;
+    color: $secondary-text;
+    background-color: #f9fafb; // Slight off-white for inputs
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $accent-color;
+      box-shadow: 0 0 0 2px rgba($accent-color, 0.2);
+    }
+
+    &::placeholder {
+      color: #9ca3af; // Lighter placeholder text
+    }
+  }
+
+  textarea {
+    resize: vertical; // Allow vertical resize only
+    min-height: 80px;
+  }
+
+  select {
+    appearance: none; // Remove default select arrow
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.25em;
+    padding-right: 2.5rem; // Make space for custom arrow
+  }
+}
+
+.errorText {
+  font-size: 0.8rem;
+  color: $error-color;
+  margin-top: 0.1rem;
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; // Space between radio options
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: normal; // Normal weight for radio labels
+    cursor: pointer;
+  }
+
+  input[type="radio"] {
+    accent-color: $accent-color; // Style the radio button itself
+    width: auto; // Override full width for radio
+  }
+}
+
+.formFooter {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  p {
+    font-size: 0.85rem;
+    color: $secondary-text;
+    line-height: 1.5;
+    text-align: center;
+    background-color: rgba($accent-color, 0.05);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+}
+
+.submitButton {
+  background-color: $accent-color;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  width: 100%; // Full width button
+
+  &:hover:not(:disabled) {
+    background-color: darken($accent-color, 10%);
+  }
+
+  &:disabled {
+    background-color: lighten($accent-color, 20%);
+    cursor: not-allowed;
+  }
+
+  &:active:not(:disabled) {
+      transform: scale(0.98);
+  }
+}
+
+.confirmationMessage {
+  text-align: center;
+  padding: 2rem 0;
+
+  h3 {
+    font-size: 1.5rem;
+    color: $success-color;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+     span[role="img"] { font-size: 1.2em; }
+  }
+
+  p {
+    font-size: 1rem;
+    color: $secondary-text;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .confirmButton {
+    background-color: $accent-color;
+    color: white;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: darken($accent-color, 10%);
+    }
+  }
+}

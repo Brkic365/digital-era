@@ -37,22 +37,28 @@ $minus-color: #ef4444; // Slightly brighter red
 
     // --- Content Card ---
     .card {
-        z-index: 2; // Card content above background h1
+        z-index: 2;
         position: relative;
         display: flex;
         flex-direction: column;
-        flex-grow: 1; // Allow card to grow to fill package height
+        flex-grow: 1;
         gap: 1rem;
         padding: 1.5rem;
         background-color: $card-bg;
         border-radius: 0.75rem;
         border: 1px solid $border-color;
-        box-shadow: 0 4px 15px rgba(100, 116, 139, 0.07); // Softer default shadow
-        overflow: hidden; // Ensure content stays within rounded corners
+        box-shadow: 0 4px 15px rgba(100, 116, 139, 0.07);
+        overflow: hidden;
 
         @media screen and (min-width: 850px) {
              padding: 2rem;
              gap: 1.25rem;
+        }
+
+        .actionButtonContainer {
+            margin-top: auto; // Pushes the button to the bottom of the card
+            padding-top: 1.5rem; // Space above the button
+            width: 100%; // Ensure it takes full width for the button
         }
 
         // --- Top Section (Icon + Title) ---
