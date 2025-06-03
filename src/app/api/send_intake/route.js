@@ -2,7 +2,7 @@
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const ownerEmail = 'russianbeauty518@outlook.com'; // Owner's email
+const ownerEmail = 'info@the-digital-era.com'; // Owner's email
 const fromEmail = 'onboarding@resend.dev'; // As requested
 
 export async function POST(request) {

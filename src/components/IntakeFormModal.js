@@ -112,8 +112,8 @@ const IntakeFormModal = ({ isOpen, onClose, selectedPackageTitle }) => {
         ) : (
           <>
             <div className={styles.modalHeader}>
-              <h2><span role="img" aria-label="writing hand">📝</span> Business Development Intake Form</h2>
-              <p>Thanks for your interest in working with us! Please take 2 minutes to fill this out so we can match you with the best package and send a payment link.</p>
+              <h2><span role="img" aria-label="writing hand">📝</span>Intake Form</h2>
+              <p>Thanks for your interest in working with us! Please take 2 minutes to fill this out.</p>
               {/* Display context title if provided and meaningful */}
               {selectedPackageTitle && (
                 <p className={styles.selectedPackageInfo}>
@@ -182,7 +182,7 @@ const IntakeFormModal = ({ isOpen, onClose, selectedPackageTitle }) => {
               </div>
               
               <div className={styles.formFooter}>
-                  <p>✅ Once you submit this form, {"we’ll"} review your responses and recommend the best-fit package for you. {"We’ll"} follow up within 24 hours with a direct payment link to get started.</p>
+                  <p>✅ Once you submit this form, {"we’ll"} review your responses{selectedPackageTitle !== "Strategy Session Inquiry" && " and recommend the best-fit package for you."} {"We’ll"} follow up within 24 hours with a direct payment link to get started.</p>
               </div>
 
               <button type="submit" className={styles.submitButton} disabled={isSubmitting}>

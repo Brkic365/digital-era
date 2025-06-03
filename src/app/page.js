@@ -120,7 +120,7 @@ export default function Home() {
             subtitle="Build Your Online Business. Travel the World. Work from Anywhere. Become a Digital-Nomad. We help you turn ideas into income-generating online businesses you can run globally."
             cta={{
             text: "Get Started",
-            href: "/contact" // This can remain a link to contact page, or change to a direct pay if desired
+            href: "/packages" // This can remain a link to contact page, or change to a direct pay if desired
             }}
         />
       </motion.section>

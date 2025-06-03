@@ -49,7 +49,7 @@ $card-border: #e2e8f0;
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
-            align-items: stretch;
+            align-items: stretch !important;
 
             @media screen and (min-width: 768px) {
                 grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));

@@ -14,7 +14,7 @@ $minus-color: #ef4444; // Slightly brighter red
     position: relative; // Needed for badge and potentially h1 positioning
     display: flex; // Ensure it takes up grid space correctly
     flex-direction: column; // Stack h1 and card (if h1 is displayed)
-    height: 100%; // Allow package to fill grid cell height if align-items: stretch
+    height: 100% !important; // Allow package to fill grid cell height if align-items: stretch
 
     // --- Background H1 (Styling mostly overridden by parent) ---
     h1 {

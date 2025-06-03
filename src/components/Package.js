@@ -155,9 +155,9 @@ function Package({
                 }}
                 style={{
                   width: '100%',
-                  backgroundColor: isFeatured ? '#BB9B4E' : '#3b82f6', // Use theme accent color
+                  backgroundColor: '#BB9B4E', // Use theme accent color
                   color: 'white',
-                  borderColor: isFeatured ? '#BB9B4E' : '#3b82f6',
+                  borderColor: '#BB9B4E',
                 }}
               />
             )}
