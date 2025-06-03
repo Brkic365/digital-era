@@ -41,7 +41,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.bottomBar}>
-        <p>© Digital Era 2025. All Rights Reserved.</p>
+        <p>© Digital Era 2024. All Rights Reserved.</p>
       </div>
     </footer>
   );
