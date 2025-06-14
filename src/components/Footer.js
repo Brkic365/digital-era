@@ -33,6 +33,7 @@ export default function Footer() {
             <h4>Features</h4>
             <ul>
               <li><Link href="/terms">Terms of Service</Link></li>
+              <li><Link href="/privacy">Privacy Policy</Link></li>
               <li><Link href="/faq">FAQ</Link></li>
               <li><Link href="/contact">Contact Us</Link></li>
             </ul>

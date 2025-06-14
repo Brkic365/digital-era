@@ -1,0 +1,111 @@
+// src/styles/pages/Privacy.module.scss
+
+// Variables (consider defining globally or importing)
+$primary-text: #1f2937;
+$secondary-text: #4b5563;
+$accent-color: #3b82f6;
+$border-color: #e5e7eb;
+$light-bg: #f9fafb; // For any notice boxes if added later
+
+.privacy {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem 1.5rem;
+    font-family: 'Poppins', sans-serif; // Match global font
+    line-height: 1.7; // Good for readability
+    color: $secondary-text;
+    position: relative;
+
+    // Main Page Title
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem; // More space after title
+      color: $primary-text;
+      position: relative;
+      z-index: 1;
+
+      // Optional: Underline effect similar to Terms
+      &::after {
+        content: "";
+        position: absolute;
+        width: 80px;
+        height: 4px;
+        background: $accent-color;
+        bottom: -0.75rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -1;
+        border-radius: 2px;
+      }
+    }
+
+    // Section Headings (e.g., 1. Collection of Personal Information)
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: $primary-text;
+      border-bottom: 1px solid $border-color;
+      padding-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+
+      @media screen and (min-width: 768px) {
+        font-size: 1.6rem;
+      }
+    }
+
+    // Sub-Section Headings (e.g., a. To which companies...)
+    .subHeading { // Using a class for these specific h3s
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: darken($primary-text, 5%);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    // Paragraphs
+    p {
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+        color: $secondary-text;
+
+        strong { // For emphasis within paragraphs if needed
+            font-weight: 600;
+            color: $primary-text;
+        }
+    }
+
+    // Inline Links
+    .inlineLink {
+        color: $accent-color;
+        text-decoration: underline;
+        font-weight: 500;
+
+        &:hover {
+            text-decoration: none;
+            color: darken($accent-color, 10%);
+        }
+    }
+
+    // If you add any bulleted lists directly from the text, style them:
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+      margin-top: 0.5rem;
+      position: relative;
+      z-index: 1;
+      list-style: disc;
+
+      li {
+        margin-bottom: 0.5rem;
+        color: $secondary-text;
+      }
+    }
+}

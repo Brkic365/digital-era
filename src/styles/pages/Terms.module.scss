@@ -1,96 +1,157 @@
+// src/styles/pages/Terms.module.scss
+
+// Variables (consider defining globally)
+$primary-text: #1f2937; // Darker text for better readability
+$secondary-text: #4b5563;
+$accent-color: #3b82f6; // Your theme's accent for links, etc.
+$border-color: #e5e7eb;
+$light-bg: #f9fafb; // Light background for notice
+
 .terms {
-    max-width: 800px;
+    max-width: 800px; // Comfortable reading width
     margin: 0 auto;
-    padding: 3rem 1.5rem;
-    font-family: 'Inter', sans-serif;
-    line-height: 1.8;
-    color: #333;
+    padding: 3rem 1.5rem 5rem 1.5rem; // More bottom padding
+    font-family: 'Poppins', sans-serif; // Use global Poppins
+    line-height: 1.7; // Improved line height for readability
+    color: $secondary-text; // Default text color
     position: relative;
 
+    // Graphic - optional, can be too distracting for legal text
     .graphic {
       position: absolute;
-      width: 100%;
-      z-index: 1;
+      width: clamp(300px, 80%, 600px); // Responsive width
+      z-index: 0; // Behind text
       top: 0;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.05; // Very subtle
+      pointer-events: none;
     }
-  
+
+    // Main Page Title
     h1 {
-      font-size: 2rem;
+      font-size: clamp(1.8rem, 5vw, 2.5rem); // Responsive
       font-weight: 700;
       text-align: center;
       margin-bottom: 0.5rem;
+      color: $primary-text;
       position: relative;
-      z-index: 2;
-  
+      z-index: 1; // Above graphic
+
+      // Underline effect
       &::after {
         content: "";
         position: absolute;
-        width: 60%;
-        height: 1.5rem;
-        background: #e8f1fa;
-        bottom: -0.25rem;
+        width: 80px; // Fixed width for underline
+        height: 4px; // Thicker
+        background: $accent-color; // Use accent color
+        bottom: -0.75rem; // Position below
         left: 50%;
         transform: translateX(-50%);
         z-index: -1;
+        border-radius: 2px;
       }
     }
 
-    p {
-        position: relative;
-        z-index: 2;
-    }
-  
     .date {
       text-align: center;
-      font-size: 0.95rem;
-      margin-bottom: 2rem;
-      color: #444;
+      font-size: 0.9rem;
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem; // More space after date
+      color: $secondary-text;
+      font-style: italic;
       position: relative;
-      z-index: 2;
-    }
-  
-    h2 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-      position: relative;
-      z-index: 2;
-    }
-  
-    ul {
-      padding-left: 1.25rem;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
-  
-      li {
-        list-style: disc;
-        margin-bottom: 0.3rem;
-      }
-    }
-  
-    .notice {
-      margin-top: 2rem;
-      font-weight: 600;
-      background-color: #f9fafb;
-      padding: 1rem;
-      border-left: 4px solid #2563eb;
-      border-radius: 0.5rem;
-      position: relative;
-      z-index: 2;
+      z-index: 1;
     }
 
-    @media (min-width: 800px) {
-        h1 {
-            font-size: 3rem;
-  
-            &:after {
-              width: 70%;
-              bottom: 0.25rem;
-            }
-        }
+    // Article Headings (e.g., Article 1 - ...)
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 2.5rem; // More space above articles
+      margin-bottom: 1rem; // Space below article heading
+      color: $primary-text;
+      border-bottom: 1px solid $border-color; // Subtle separator
+      padding-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+
+      @media screen and (min-width: 768px) {
+        font-size: 1.6rem;
       }
-  }
-  
+    }
+
+    // Sub-Article Headings (e.g., Website Content, Licence)
+    .subArticleHeading {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: darken($primary-text, 5%); // Slightly less prominent than h2
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    // Paragraphs
+    p {
+        margin-bottom: 1rem; // Consistent spacing between paragraphs
+        position: relative;
+        z-index: 1;
+        color: $secondary-text; // Ensure consistent paragraph color
+
+        strong { // Style for the article numbers (1.1, 1.2, etc.)
+            font-weight: 600;
+            color: $primary-text; // Make numbers stand out
+            margin-right: 0.25em; // Small space after number
+        }
+    }
+
+    // Unordered Lists (like in Article 2 Services Provided)
+    ul {
+      padding-left: 1.5rem; // Indent list
+      margin-bottom: 1rem;
+      margin-top: 0.5rem; // Space before list
+      position: relative;
+      z-index: 1;
+      list-style: disc; // Default disc style
+
+      li {
+        margin-bottom: 0.5rem; // Space between list items
+        color: $secondary-text;
+      }
+    }
+
+    // Inline Links (e.g., Privacy Policy)
+    .inlineLink {
+        color: $accent-color;
+        text-decoration: underline;
+        font-weight: 500;
+
+        &:hover {
+            text-decoration: none;
+            color: darken($accent-color, 10%);
+        }
+    }
+
+    // Notice Box (from previous version, if kept)
+    .notice {
+      margin-top: 3rem; // More space before notice
+      font-weight: 500; // Normal weight for notice text
+      background-color: $light-bg;
+      padding: 1.25rem 1.5rem; // More padding
+      border-left: 4px solid $accent-color; // Use accent color
+      border-radius: 0.5rem;
+      position: relative;
+      z-index: 1;
+      font-size: 0.95rem;
+
+      strong {
+          color: $primary-text; // Strong text within notice
+      }
+    }
+
+    // Ensure FooterBanner has space above it
+    // This can be done by adding margin to the FooterBanner's own wrapper
+    // or by styling the last animated div that contains it in the JSX.
+    // The `div style={{marginTop: "4rem"}}` in JSX handles this for now.
+}
