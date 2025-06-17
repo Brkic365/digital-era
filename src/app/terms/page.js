@@ -28,7 +28,7 @@ const listStagger = { // For staggering list items
 
 
 const TermsPage = () => {
-  const effectiveDate = "27/04/2025";
+  const effectiveDate = "11/11/2025";
   const companyEmail = "info@the-digital-era.com";
   const websiteUrl = "https://the-digital-era.com";
   const privacyPolicyUrl = "/privacy"; // Updated to relative path
