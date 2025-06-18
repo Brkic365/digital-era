@@ -154,16 +154,6 @@ function About() {
             // Added style to ensure it doesn't inherit dark background if placed after team section accidentally
             style={{ background: 'white', paddingTop: '4rem', paddingBottom: '4rem' }}
         >
-        <TitleTextCta
-            title="Ready to Engineer Your Freedom?"
-            subtitle="Connect with Digital Era and let's discuss how to build your location-independent business, optimize your structure, and scale your vision."
-            cta={{
-            text: "Book a Strategy Call", // Updated CTA text
-            href: "/contact" // Link to contact or booking page
-            }}
-            align="center" // Center alignment often works well for final page CTAs
-            crumbText="Start Your Journey" // Updated crumb text
-        />
       </motion.div>
       {/* --- END FINAL CTA --- */}
       <FooterBanner />

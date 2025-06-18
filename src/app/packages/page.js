@@ -112,7 +112,7 @@ export default function PackagesPage() {
                listTitle="Includes:"
                isFeatured={true}
                checks={[
-                  "Monthly Strategy Call with CE0 (30 min)",
+                  "Monthly Strategy Call with CEO (30 min)",
                   "Legal & Structure Support",
                   "Website & Branding",
                   "Tools & Templates",
